@@ -1,4 +1,4 @@
-import GoogleLogin from '../../components/GoogleLogin'
+import GoogleLogin from "@/components/GoogleLogin";
 
 const SignupPage = ({ searchParams }) => {
   return (
