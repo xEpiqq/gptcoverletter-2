@@ -7,7 +7,7 @@ const AboutPage = () => {
     <>
       <Breadcrumb
         pageName="About Page"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius eros eget sapien consectetur ultrices. Ut quis dapibus libero."
+        description="At GPTCoverLetter, we're all about helping you land your dream job. Our easy-to-use cover letter creation tool is designed to take the stress out of the application process and give you the best chance of standing out from the crowd."
       />
       <AboutSectionOne />
       <AboutSectionTwo />
