@@ -22,7 +22,6 @@ const stripe_public_key = process.env.STRIPE_REAL_PUBLISHABLE_KEY;
 const stripePromise = loadStripe(stripe_public_key);
 
 function Freetrial() {
-  console.log(stripe_public_key)
   ////firebase - firestore////
   const db = getFirestore(app);
   const provider = new GoogleAuthProvider();
