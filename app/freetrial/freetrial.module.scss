@@ -7,13 +7,16 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background: linear-gradient(180deg, #FADC9E -32.46%, rgba(255, 255, 255, 0) 93.53%);
+  background: linear-gradient(180deg, #fff 0%, #96a1ff 200%);
 
+  * {
+    font-family: "Kodchasan", sans-serif;
+  }
+  
   @media (max-height: 768px) {
     height: 100%;
     padding-bottom: 4rem;
   }
-    
 }
 
 .logo {
@@ -26,27 +29,27 @@
 
 .box {
   padding-top: 2.6rem;
-  margin-top: 3rem;  
+  margin-top: 3rem;
   width: 37rem;
   height: 37rem;
   background-color: white;
   box-shadow: 0px 0px 40px 15px rgba(0, 0, 0, 0.12);
   border-radius: 10px;
-  border: 4px solid linear-gradient(180deg, #FADC9E 0%, #D27653 100%);
+  border: 4px solid linear-gradient(180deg, #fff 0%, #d27653 100%);
   align-items: center;
   justify-content: center;
   .box_lt {
     text-align: center;
     color: black;
     margin: 0;
-    font-family: 'Lexend Deca';
+    font-family: "Lexend Deca";
     font-style: normal;
     font-weight: 800;
     font-size: 3rem;
   }
   .box_st {
     margin: 0;
-    font-family: 'Lexend Deca';
+    font-family: "Lexend Deca";
     font-style: normal;
     font-weight: 400;
     font-size: 1.25rem;
@@ -54,7 +57,7 @@
     margin-right: 2.5rem;
     text-align: center;
     color: black;
-    margin-top: .75rem;
+    margin-top: 0.75rem;
   }
 
   @media (max-width: 768px) {
@@ -79,12 +82,12 @@
   margin: 1rem auto;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-  background: #E4E6E8;
+  background: #e4e6e8;
   .cbar {
     width: 50%;
     height: 100%;
     border-radius: 10px;
-    background: #E9B27F;
+    background: #bfb3ff;
   }
 }
 
@@ -115,7 +118,7 @@
   background: none;
   border: none;
   color: black;
-  font-family: 'Lexend Deca';
+  font-family: "Lexend Deca";
   font-style: normal;
   font-weight: 400;
   font-size: 1.1rem;
@@ -124,7 +127,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border: 4px solid #FADC9E;
+  border: 4px solid #c3bfff;
   position: relative;
   img {
     position: absolute;
@@ -135,7 +138,8 @@
     height: 1.75rem;
   }
   &:hover {
-    background: #fffbf3;
+    background: #96a1ff;
+    border-color: #96a1ff;
   }
 }
 
@@ -173,11 +177,11 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  background: linear-gradient(180deg, #FADC9E -32.46%, rgba(255, 255, 255, 0) 93.53%);
+  background: linear-gradient(180deg, #fff 0%, #96a1ff 200%);
 }
 
 .pleft {
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -185,29 +189,28 @@
   outline: 1px solid green;
 }
 
-
 .leftbox {
   padding-top: 2.6rem;
   width: 37rem;
-  height: 45rem;
-  background-color: white;
+  height: 90%;
+  background-color: #f4f4f4;
   box-shadow: 0px 0px 40px 15px rgba(0, 0, 0, 0.12);
   border-radius: 10px;
-  border: 4px solid linear-gradient(180deg, #FADC9E 0%, #D27653 100%);
+  border: 4px solid linear-gradient(180deg, #fadc9e 0%, #d27653 100%);
   align-items: center;
   justify-content: center;
   .bigtext {
     text-align: center;
     color: black;
     margin: 0;
-    font-family: 'Lexend Deca';
+    font-family: "Lexend Deca";
     font-style: normal;
     font-weight: 800;
     font-size: 2.5rem;
   }
   .box_st {
     margin: 0;
-    font-family: 'Lexend Deca';
+    font-family: "Lexend Deca";
     font-style: normal;
     font-weight: 400;
     font-size: 1.25rem;
@@ -215,24 +218,15 @@
     margin-right: 2.5rem;
     text-align: center;
     color: black;
-    margin-top: .75rem;
+    margin-top: 0.75rem;
   }
 }
 
 .cbartwo {
-    width: 86%;
-    height: 100%;
-    border-radius: 10px;
-    background: #E9B27F;
-}
-
-.pright {
-  width: 50%;
+  width: 86%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  outline: 1px solid red;
+  border-radius: 10px;
+  background: #bfb3ff;
 }
 
 .cbartwo {
@@ -257,22 +251,21 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
 }
 
 .stripe_button {
   display: flex;
   width: 100%;
   margin-top: 2.5rem;
-  background: #FADC9E;
+  background: #bfb3ff;
   background: transparent;
   // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   border: none;
-  border: 2px solid #FADC9E;
+  border: 2px solid #96a1ff;
   height: 3.5rem;
-  color: #f5cc7b;
-  font-family: 'Lexend Deca';
+  color: #352e3e;
+  font-family: "Lexend Deca";
   font-style: normal;
   font-weight: 700;
   font-size: 1.25rem;
@@ -280,10 +273,8 @@
   justify-content: center;
   cursor: pointer;
   &:hover {
-    background: #ffefcf;
-    color: #fac761;
+    background: #bfb3ff;
   }
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -334,7 +325,6 @@
   }
 }
 
-
 .rollerpage {
   width: 100vw;
   height: 100vh;
@@ -344,13 +334,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, #FADC9E -32.46%, rgba(255, 255, 255, 0) 93.53%);
+  background: linear-gradient(180deg, #fff 0%, #96a1ff 200%);
   h1 {
-    font-family: 'Lexend Deca';
+    font-family: "Lexend Deca";
     font-style: normal;
     font-weight: 800;
     font-size: 1.5rem;
-    color: #352e3e;
+    color: #fff;
     margin: 0;
     margin-top: 2.5rem;
   }

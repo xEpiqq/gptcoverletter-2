@@ -34,7 +34,6 @@ const GoogleLogin = () => {
         email: user.email,
         displayname: user.displayName,
       });
-      console.log(res.data);
 
       const additionalUserInfo = await getAdditionalUserInfo(result);
     } catch (error) {
