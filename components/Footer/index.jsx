@@ -14,7 +14,7 @@ const Footer = () => {
               <div className="mb-12 max-w-[360px] lg:mb-16">
                 <Link href="/" className="mb-8 inline-block">
                   <Image
-                    src="images/logo/logo-2.svg"
+                    src="/logo.png"
                     alt="logo"
                     className="w-full dark:hidden"
                     width={140}
@@ -29,8 +29,9 @@ const Footer = () => {
                   />
                 </Link>
                 <p className="mb-9 text-base font-medium leading-relaxed text-body-color">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer lobortis.
+                  Stay in the loop and gain exclusive access to content,
+                  insights, and updates by following GPTCoverLetter on social
+                  media today.
                 </p>
                 <div className="flex items-center">
                   <a
@@ -99,7 +100,7 @@ const Footer = () => {
                   Useful Links
                 </h2>
                 <ul>
-                  <li>
+                  {/* <li>
                     <a
                       href="/"
                       className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
@@ -107,8 +108,8 @@ const Footer = () => {
                       {" "}
                       Blog{" "}
                     </a>
-                  </li>
-                  <li>
+                  </li> */}
+                  {/* <li>
                     <a
                       href="/"
                       className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
@@ -116,7 +117,7 @@ const Footer = () => {
                       {" "}
                       Pricing{" "}
                     </a>
-                  </li>
+                  </li> */}
                   <li>
                     <a
                       href="/"
@@ -124,6 +125,15 @@ const Footer = () => {
                     >
                       {" "}
                       About{" "}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/contact"
+                      className="mb-4 inline-block text-base font-medium text-body-color hover:text-primary"
+                    >
+                      {" "}
+                      Contact Us{" "}
                     </a>
                   </li>
                 </ul>
@@ -208,7 +218,10 @@ const Footer = () => {
         <div className="bg-primary/10 py-8">
           <div className="container">
             <p className="text-center text-base text-body-color dark:text-white">
-              Template by UIdeck and <a href="https://nextjstemplates.com" rel="nofollow noopener">Next.js Templates</a>
+              Template by UIdeck and{" "}
+              <a href="https://nextjstemplates.com" rel="nofollow noopener">
+                Next.js Templates
+              </a>
             </p>
           </div>
         </div>
@@ -286,7 +299,7 @@ const Footer = () => {
             </defs>
           </svg>
         </div>
-        <div className="absolute left-0 bottom-24 z-[-1]">
+        <div className="absolute bottom-24 left-0 z-[-1]">
           <svg
             width="79"
             height="94"

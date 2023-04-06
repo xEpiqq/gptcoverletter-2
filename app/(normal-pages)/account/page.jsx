@@ -7,6 +7,7 @@ import app from "../../../components/FirebaseApp"
 import { getAuth } from "firebase/auth";
 // swr
 import useSWR from "swr";
+import Breadcrumb from "@/components/Common/Breadcrumb";
 
 export default function Settings() {
   const auth = getAuth();
@@ -29,7 +30,7 @@ export default function Settings() {
     return <div>Loading...</div>;
   }
 
-  if (!data) {
+  if (!user) {
     return <div>Not logged in</div>;
   }
 
@@ -38,31 +39,45 @@ export default function Settings() {
   }
 
   return (
-    <div className={s.page}>
-      <div className={s.gradient_background}></div>
-      <h1>Account Settings</h1>
-      <div className={s.content}>
-        <div className={s.content_left}>
-          <div className={s.info_container}>
-            <div className={s.user_info}>
-              <img alt="user" src={user.photoURL} />
-              <h3>{data.name}</h3>
-            </div>
-          </div>
-          <div className={s.info_container}>
-            <h3>Account Details</h3>
-            <p>Email: {data.email}</p>
-            <button>Delete Account</button>
-          </div>
-          <div className={s.info_container}>
-            <h3>{data.subscriptionstatus}</h3>
-            <p>Ends in 3 days</p>
-            <p>Full access to gptcoverletter.com</p>
-            <button>Cancel Subscription</button>
-          </div>
+    <>
+      <Breadcrumb
+        pageName="Your Account"
+        description="Manage your account settings and set your preferences"
+      />
+      {/* margin on the bottom */}
+      <div class='flex items-center justify-center flex-col gap-4 mb-10'>
+        <div className={s.container} style={{flexDirection: 'row', gap: '2rem', justifyContent: 'flex-start', alignItems:'center'}}>
+          <img
+            src={user.photoURL}
+            alt="profile picture"
+            className="rounded-full"
+          />
+          <h2 className="text-2xl font-bold">{user.displayName}</h2>
         </div>
-        <div className={s.content_right}></div>
+        <div className={s.container}>
+          <h1>Your Info</h1>
+          <h3>{user.displayName}</h3>
+          <h3>{user.email}</h3>
+          <h3>{user.phoneNumber}</h3>
+        </div>
+        <div className={s.container}>
+          <h1>Your Subscriptions</h1>
+          {data?.subscriptionstatus == "none" ? (
+            <>
+              <h3>You are not subscribed to any plans</h3>
+              <Link href="/pricing">Subscribe now</Link>
+            </>
+          ) : (
+            <>
+              <h3>
+                Full subscription. you have full, unlimited access to all features!
+              </h3>
+              <h3>$9.99/Month</h3>
+              <button onClick={() => {}}>Cancel Subscription</button>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
