@@ -235,13 +235,31 @@ export default function Dashboard() {
     <div className={s.page}>
       <div className={s.navbar}>
         <div className={s.navbar_left}>
-          <img className={s.logo} src="/logo.svg" alt="logo" />
-          <img
-            className={s.sidebar_toggle}
-            src="/logo_background.svg"
-            alt="logo"
+          <img className={s.logo} src="/logo_blue.svg" alt="logo" />
+          {sidebarOpen && (
+          <button
             onClick={handleSidebar}
-          />
+            id="navbarToggler"
+            aria-label="Mobile Menu"
+            className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+          >
+            <span
+              className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                sidebarOpen ? " top-[7px] rotate-45" : " "
+              }`}
+            />
+            <span
+              className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                sidebarOpen ? "opacity-0 " : " "
+              }`}
+            />
+            <span
+              className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                sidebarOpen ? " top-[-8px] -rotate-45" : " "
+              }`}
+            />
+          </button>
+          )}
         </div>
         <div className={s.navbar_center}>
           <img src="/double_arrow_left.svg" alt="logo" />
@@ -408,9 +426,11 @@ export default function Dashboard() {
               className={s.content_right_input}
             />
           </div>
-          
+
           <div className={s.input_container}>
-            <label htmlFor="Additional Instructions">Additional instructions here</label>
+            <label htmlFor="Additional Instructions">
+              Additional instructions here
+            </label>
             <input
               type="text"
               id="Additional Instructions"
