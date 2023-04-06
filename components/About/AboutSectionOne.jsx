@@ -24,8 +24,8 @@ const AboutSectionOne = () => {
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="Crafted for Startup, SaaS and Business Sites."
-                paragraph="The main ‘thrust’ is to focus on educating attendees on how to best protect highly vulnerable business applications with interactive panel discussions and roundtables."
+                title="You want that next job fast? This is for you."
+                paragraph="Speed is everything. Apply for various positions at insane speeds, and increase the odds of securing that next job with perfectly tailored cover letters."
                 mb="44px"
               />
 
@@ -35,15 +35,15 @@ const AboutSectionOne = () => {
               >
                 <div className="mx-[-12px] flex flex-wrap">
                   <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="Premium quality" />
-                    <List text="Tailwind CSS" />
-                    <List text="Use for lifetime" />
+                    <List text="Novel AI tech" />
+                    <List text="Prompt control" />
+                    <List text="Linguistic precision" />
                   </div>
 
                   <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="Next.js" />
-                    <List text="Rich documentation" />
-                    <List text="Developer friendly" />
+                    <List text="Intuitive design" />
+                    <List text="Letter management" />
+                    <List text="Rapid generation" />
                   </div>
                 </div>
               </div>
@@ -55,7 +55,7 @@ const AboutSectionOne = () => {
                 data-wow-delay=".2s"
               >
                 <Image
-                  src="/images/about/about-image.svg"
+                  src="/letterformrevise.png"
                   alt="about-image"
                   fill
                   className="mx-auto max-w-full lg:mr-0"
