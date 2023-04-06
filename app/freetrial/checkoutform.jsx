@@ -62,7 +62,7 @@ function CheckoutForm(props) {
   <div className={s.paget}>
     <div className={s.pleft}>
       <div className={s.leftbox}>
-        <h1 className={s.bigtext}>Start Free 14-Day Trial</h1>
+        <h1 className={s.bigtext}>Gain full access to GPTCoverLetter</h1>
         <div className={s.bar}>
           <div className={s.cbartwo}/>
         </div>
@@ -74,7 +74,7 @@ function CheckoutForm(props) {
         <div className={s.stripe} >
             <form onSubmit={handleSubmit}>
               <PaymentElement />
-              <button disabled={isLoading || !stripe || !elements} id="submit" className={s.stripe_button} >Start My Free Trial</button>
+              <button disabled={isLoading || !stripe || !elements} id="submit" className={s.stripe_button} >Subscribe</button>
               {/* {message && <div className={s.errormessage}>{message}</div>} */}
             </form>
         </div>
