@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import app from '../../component/FirebaseApp'
+import app from '../../../components/FirebaseApp'
 const db = getFirestore(app);
 
 export async function POST(request) {

@@ -7,7 +7,7 @@ import { signOut, getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 import * as pdfjsLib from "pdfjs-dist/webpack";
-import app from "../component/FirebaseApp";
+import app from "../../components/FirebaseApp";
 import useSWR from "swr";
 
 import axios from "axios";
