@@ -142,7 +142,7 @@ function Freetrial() {
               <h2 className={s.box_st}>Create account with</h2>
               <h2 className={s.box_st}>1 / 2</h2>
             </div>
-            {user ? (
+            {!user ? (
               <div className={s.btns}>
                 <button onClick={googleLogin} className={s.authbtn}>
                   <img src="/google.png" className={s.googleimg} /> Sign up with
