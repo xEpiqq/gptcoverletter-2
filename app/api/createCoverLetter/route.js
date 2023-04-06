@@ -32,7 +32,8 @@ export async function POST(request) {
     return new Response(JSON.stringify({ error: "User doesn't exist" }));
   }
 
-  if (userDoc.data().sub == "none") {
+  if (userDoc.data().subscription_active == "none") {
+    console.log('User does not have a subscription')
     return new Response( JSON.stringify({ error: "User does not have a subscription" }));
   }
 
@@ -41,11 +42,12 @@ export async function POST(request) {
 
     const prompt = 'You will create a cover letter for a job at ' + jobCompany + ' as a ' + jobTitle + '. The job is located in ' + jobLocation + '. The job description is: ' + jobDescription + '. Additional instructions are: ' + additionalInstructions + '. Your resume is attached. the resume is ' + resumePdf + '.';
 
-    const completion = openai.createChatCompletion({
+    const completion = await openai.createChatCompletion({
       model: model,
       messages: [{ role: "system", content: prompt }],
       temperature: creativityMeter / 50,
     });
+    console.log(completion.data)
 
     if (completion.data.choices[0].text == "undefined") {
       return new Response(JSON.stringify({ data: "undefined" }));
