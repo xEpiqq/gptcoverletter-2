@@ -17,7 +17,6 @@
   background-color: white;
 
   z-index: -1;
-
 }
 
 .navbar {
@@ -43,13 +42,11 @@
   }
 
   .navbar_center {
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
-
 
     h1 {
       color: black;
@@ -87,11 +84,10 @@
   }
 
   input {
-    
-      // placeholder text should be white
-      &::placeholder {
-        color: #b3b3b3;
-      }
+    // placeholder text should be white
+    &::placeholder {
+      color: #b3b3b3;
+    }
   }
 
   @media (max-width: 768px) {
@@ -117,7 +113,7 @@
   align-items: center;
 
   background-color: #362f3a;
-  transition: .5s;
+  transition: 0.5s;
 
   width: 100%;
 
@@ -149,7 +145,7 @@
 
       &:hover {
         cursor: pointer;
-        
+
         // decrease opacity
         opacity: 0.7;
       }
@@ -164,7 +160,7 @@
     // make scroll pretty
     &::-webkit-scrollbar {
       width: 0.5rem;
-      
+
       // make the thumb pretty
       &-thumb {
         background-color: #d27653;
@@ -175,8 +171,6 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-
-
 
       .cover_letter_selector_button {
         display: flex;
@@ -213,7 +207,6 @@
           border: none;
           font-size: 0.7rem;
           font-weight: 500;
-          
         }
 
         .cover_letter_selector_button_right_icons {
@@ -234,7 +227,6 @@
               opacity: 1;
             }
           }
-
         }
       }
     }
@@ -278,7 +270,6 @@
         padding-left: 1rem;
         padding-right: 1rem;
 
-
         &:hover {
           background-color: #444444;
 
@@ -302,11 +293,12 @@
     flex: 1;
     background-color: #362f3a;
     margin: 5%;
-    margin-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 1rem;
 
     textarea {
       width: 98%;
-      height: 98%;
+      height: 100%;
       background-color: transparent;
       color: #fff;
 
@@ -325,46 +317,43 @@
       }
     }
   }
+}
 
-  .content_center_input_container {
-    width: 90%;
-    flex: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 5%;
-    height: 4rem;
+.content_center_input_container {
+  width: 90%;
+  flex: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+  height: 4rem;
+  background-color: red input {
+    width: 100%;
+    height: 2rem;
 
-    input {
-      width: 100%;
-      height: 2rem;
+    // no border
+    background: #362f3a;
+    border: 1.2px solid #444444;
+    border-radius: 7px;
+    padding-left: 0.5rem;
+  }
 
-      // no border
-      background: #362f3a;
-      border: 1.2px solid #444444;
-      border-radius: 7px;
-      padding-left: 0.5rem;
+  button {
+    background-color: #362f3a;
+    height: 2rem;
+    border-radius: 7px;
+    color: #fff;
+    font-size: 0.7rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 
-
-    }
-
-    button {
-      background-color: #362f3a;
-      height: 2rem;
-      border-radius: 7px;
-      color: #fff;
-      font-size: 0.7rem;
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-
-      &:hover {
-        cursor: pointer;
-        background-color: #d27653;
-        color: #111111;
-      }
+    &:hover {
+      cursor: pointer;
+      background-color: #d27653;
+      color: #111111;
     }
   }
 }
@@ -380,15 +369,9 @@
   height: 200px;
 
   @media (max-width: 768px) {
-    h2 {display: none;}
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
-  }
-
-  h2 {
-    color: black;
-
   }
 
   * {
@@ -431,19 +414,6 @@
     padding-left: 0.5rem;
   }
 
-  .content_right_input_textbox {
-    background: #362f3a;
-    border: 1.5px solid #414243;
-    border-radius: 4px;
-
-    height: 40rem;
-    width: 95%;
-
-    resize: none;
-
-    font-size: 0.8rem;
-  }
-
   .content_right_bottom {
     width: 90%;
     margin-left: 5%;
@@ -476,11 +446,24 @@
     }
 
     &:hover {
-
       background-color: #414243;
 
       cursor: pointer;
     }
+  }
+
+  .content_right_input_textbox {
+    border: 1.5px solid #414243;
+    background-color: #362f3a;
+    height: 5rem;
+    border-radius: 4px;
+
+    width: 95%;
+
+    resize: none;
+
+    font-size: 0.8rem;
+    color: black;
   }
 
   .nothing_attached_text {
@@ -524,7 +507,6 @@
   @media (max-width: 768px) {
     display: flex;
   }
-
 }
 
 .logo {
@@ -532,14 +514,16 @@
   @media (max-width: 768px) {
     display: none;
   }
-
 }
 
-.loading_button {
+.loading_button,
+.generate_button {
   background-color: #362f3a;
   color: #fff;
   font-size: 0.7rem;
-  height: 2rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
   border-radius: 5px;
   border: none;
 
@@ -547,31 +531,36 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background-color: #414243;
+
+    cursor: pointer;
+  }
+}
+
+.loading_button {
   // no text
   text-indent: -9999px;
 
-  // create a loading animation
+  // create a spinning loading animation
   &:after {
     content: "";
     display: block;
-    width: 0;
-    height: 0;
-    border-left: 0.5rem solid transparent;
-    border-right: 0.5rem solid transparent;
-    border-top: 0.5rem solid #fff;
-    margin-left: 0.5rem;
-    animation: loading 1s infinite;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: loading 1.2s linear infinite;
   }
 
   @keyframes loading {
     0% {
-      border-top-color: #fff;
-    }
-    50% {
-      border-top-color: #000;
+      transform: rotate(0deg);
     }
     100% {
-      border-top-color: #fff;
+      transform: rotate(360deg);
     }
   }
 
@@ -587,7 +576,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  
+
   // i have an image called background.png in the public folder
   background-image: url(../../public/background.png);
   background-size: cover;

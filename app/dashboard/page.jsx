@@ -12,6 +12,9 @@ import useSWR from "swr";
 
 import axios from "axios";
 
+// TODO: ask before regenerating cover letter
+// TODO: fix input on left
+
 export default function Dashboard() {
   const router = useRouter();
   const auth = getAuth();
@@ -230,7 +233,6 @@ export default function Dashboard() {
 
   return (
     <div className={s.page}>
-      <div className={s.gradient_background}></div>
       <div className={s.navbar}>
         <div className={s.navbar_left}>
           <img className={s.logo} src="/logo.svg" alt="logo" />
@@ -297,27 +299,37 @@ export default function Dashboard() {
                             newCoverLetterOptions[index].title = e.target.value;
                             setCoverLetterOptions(newCoverLetterOptions);
                           }}
-                          onKeyDown={(e) => { if (e.key === 'Enter') { setLetterNameEdit(-1); saveCoverLetter(index); } }}
-                          onBlur={() => (setLetterNameEdit(-1) || saveCoverLetter(index))}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              setLetterNameEdit(-1);
+                              saveCoverLetter(index);
+                            }
+                          }}
+                          onBlur={() =>
+                            setLetterNameEdit(-1) || saveCoverLetter(index)
+                          }
                           blurOnSubmit={true}
                         />
                       ) : (
                         <p>{coverLetterOption.title}</p>
                       )}
                     </div>
-                    { letterNameEdit === -1 &&
-                    <div className={s.cover_letter_selector_button_right_icons}>
-                      <img
-                        src="/trash_icon.svg"
-                        alt="logo"
-                        onClick={() => deleteLetter(index)}
-                      />
-                      <img
-                        src="/edit_icon.svg"
-                        alt="logo"
-                        onClick={() => renameLetter(index)}
-                      />
-                    </div>}
+                    {letterNameEdit === -1 && (
+                      <div
+                        className={s.cover_letter_selector_button_right_icons}
+                      >
+                        <img
+                          src="/trash_icon.svg"
+                          alt="logo"
+                          onClick={() => deleteLetter(index)}
+                        />
+                        <img
+                          src="/edit_icon.svg"
+                          alt="logo"
+                          onClick={() => renameLetter(index)}
+                        />
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -367,24 +379,8 @@ export default function Dashboard() {
               onBlur={(e) => saveCoverLetter(e)}
             />
           </div>
-          <div className={s.content_center_input_container}>
-            <input
-              type="text"
-              placeholder="Additional instructions here"
-              value={additionalInstructions}
-              onChange={(e) => setAdditionalInstructions(e.target.value)}
-            />
-
-            <button
-              className={loading ? s.loading_button : null}
-              onClick={(e) => generateCoverLetter(e)}
-            >
-              GO!
-            </button>
-          </div>
         </div>
         <div className={s.content_right}>
-          <h2>Details</h2>
           <div className={s.input_container}>
             <label htmlFor="Job input">Job Title</label>
             <input
@@ -409,6 +405,17 @@ export default function Dashboard() {
               onChange={(e) => setJobLocation(e.target.value)}
               value={jobLocation}
               id="Location input"
+              className={s.content_right_input}
+            />
+          </div>
+          
+          <div className={s.input_container}>
+            <label htmlFor="Additional Instructions">Additional instructions here</label>
+            <input
+              type="text"
+              id="Additional Instructions"
+              value={additionalInstructions}
+              onChange={(e) => setAdditionalInstructions(e.target.value)}
               className={s.content_right_input}
             />
           </div>
@@ -451,6 +458,12 @@ export default function Dashboard() {
               Upload CV
             </label>
           </div>
+          <button
+            className={loading ? s.loading_button : s.generate_button}
+            onClick={(e) => generateCoverLetter(e)}
+          >
+            GO!
+          </button>
         </div>
       </div>
     </div>
