@@ -7,7 +7,7 @@ const testimonialData = [
     name: "Musharof Chy",
     designation: "Founder @TailGrids",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
+      "This tool was absolutely amazing. I was able to create a suprising amount of cover letters in a short amount of time.",
     image: "/images/testimonials/auth-01.png",
     star: 5,
   },
@@ -16,7 +16,7 @@ const testimonialData = [
     name: "Devid Weilium",
     designation: "Founder @UIdeck",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
+      "This website saved me countless hours of tedious work. I can't believe how much time I wasted before I found this.",
     image: "/images/testimonials/auth-02.png",
     star: 5,
   },
@@ -25,7 +25,7 @@ const testimonialData = [
     name: "Lethium Frenci",
     designation: "Founder @Lineicons",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
+      "I am so happy to be able to meet my applications goals with GPTCoverLetter! It would have been impossible without this tool.",
     image: "/images/testimonials/auth-03.png",
     star: 5,
   },
