@@ -16,8 +16,8 @@ const testimonialData = [
     name: "David Wing",
     designation: "Founder @GPTCoverletter",
     content:
-      "This website saved me countless hours of tedious work. I can't believe how much time I wasted before I found this.",
-    image: "/images/testimonials/auth-02.png",
+      "This website saved me countless hours of mind-numbing work. I can't believe how much time I wasted before I found this.",
+    image: "/wingface.png",
     star: 5,
   },
   {
