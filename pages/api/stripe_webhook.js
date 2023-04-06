@@ -6,8 +6,9 @@ import { getFirestore, collection, addDoc, setDoc, doc, getDoc, updateDoc, query
 import app from '../../components/FirebaseApp'
 
 const db = getFirestore(app);
-const stripe = Stripe('sk_test_51Mn4sZHpzbXtemiLwuiQd4Fbki0Ooy3B6fVkQdRPBPDNd6j5qIHaht0RWaDOJACazPY19FHcp7bnOUbloAPL6Tiv00MdLhx6WM')
-const endpointSecret = "whsec_8e2ff906dd09de3e52c1c391f3ed020eabc58cf1e305bda9166d52ccddb89e01";
+const stripe_secret_key = process.env.STRIPE_REAL_SECRET_KEY;
+const stripe = Stripe(stripe_secret_key)
+const endpointSecret = process.env.STRIPE_WEBHOOK_ENDPOINT;
 
 export const config = {
     api: {
