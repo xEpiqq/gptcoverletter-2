@@ -14,7 +14,7 @@ async function createOrUpdateStripeCustomer(emailAddress, fullname, userid) {
   // check if customer already exists in the DB
   if (existingCustomers.data.length > 0) {
     return existingCustomers.data[0];
-  } else {Loading
+  } else {
     const customer = await stripe.customers.create({
       email: emailAddress,
       name: fullname,
