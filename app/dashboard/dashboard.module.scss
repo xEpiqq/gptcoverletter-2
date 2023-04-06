@@ -273,6 +273,11 @@
       margin-bottom: 1rem;
       .logout_button,
       .subscription_button {
+        font-family: "Kodchasan", sans-serif;
+
+        // remove underline
+        text-decoration: none;
+
         background-color: transparent;
         color: #4E4E4E;
         font-size: 0.7rem;

@@ -8,6 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import * as pdfjsLib from "pdfjs-dist/webpack";
 import app from "../../components/FirebaseApp";
 import useSWR from "swr";
+import Link from "next/link";
 
 import axios from "axios";
 
@@ -356,20 +357,25 @@ export default function Dashboard() {
           <div className={s.content_left_bottom}>
             <div className={s.container}>
               <hr />
-              <button className={s.subscription_button}>
+              <Link className={s.subscription_button} href={'/account'}>
                 <img src="/subscription_icon.svg" alt="logo" />
                 Account
-              </button>
-              <button
+              </Link>
+              <Link className={s.logout_button} href={'/'}>
+                <img src="/subscription_icon.svg" alt="logo" />
+                Home
+              </Link>
+              <Link
                 className={s.logout_button}
                 onClick={() => {
                   signOut(auth);
                   router.push("/");
                 }}
+                href={'/'}
               >
                 <img src="/logout_icon.svg" alt="logo" />
                 Logout
-              </button>
+              </Link>
             </div>
           </div>
         </div>
