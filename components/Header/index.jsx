@@ -6,6 +6,7 @@ import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut, getAuth } from "firebase/auth";
+import app from "@/components/FirebaseApp";
 
 const Header = () => {
   // Navbar toggle

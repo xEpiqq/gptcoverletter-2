@@ -6,7 +6,7 @@ const ContactPage = () => {
     <>
       <Breadcrumb
         pageName="Contact Page"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius eros eget sapien consectetur ultrices. Ut quis dapibus libero."
+        description="At GPTCoverLetter, we're committed to providing exceptional support to our customers. Whether you have a question, concern, or issue, our team of experienced professionals is here to help. Count on us to guide you through any challenge and ensure that your experience with us is a positive one."
       />
 
       <Contact />
