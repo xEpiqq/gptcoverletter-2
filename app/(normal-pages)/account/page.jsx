@@ -3,7 +3,7 @@
 import react from "react";
 import s from "./settings.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
-import app from "../component/FirebaseApp";
+import app from "../../components/FirebaseApp";
 import { getAuth } from "firebase/auth";
 // swr
 import useSWR from "swr";

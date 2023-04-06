@@ -2,15 +2,17 @@
 import React from "react";
 import s from "./dashboard.module.scss";
 import { useState, useEffect } from "react";
-import UserDropdown from "../component/UserDropdown";
 import { signOut, getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 import * as pdfjsLib from "pdfjs-dist/webpack";
-import app from "../component/FirebaseApp";
+import app from "../../components/FirebaseApp";
 import useSWR from "swr";
 
 import axios from "axios";
+
+// TODO: ask before regenerating cover letter
+// TODO: fix input on left
 
 export default function Dashboard() {
   const router = useRouter();
@@ -230,16 +232,33 @@ export default function Dashboard() {
 
   return (
     <div className={s.page}>
-      <div className={s.gradient_background}></div>
       <div className={s.navbar}>
         <div className={s.navbar_left}>
-          <img className={s.logo} src="/logo.svg" alt="logo" />
-          <img
-            className={s.sidebar_toggle}
-            src="/logo_background.svg"
-            alt="logo"
-            onClick={handleSidebar}
-          />
+          <img className={s.logo} src="/logo_blue.svg" alt="logo" />
+          {sidebarOpen && (
+            <button
+              onClick={handleSidebar}
+              id="navbarToggler"
+              aria-label="Mobile Menu"
+              className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+            >
+              <span
+                className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                  sidebarOpen ? " top-[7px] rotate-45" : " "
+                }`}
+              />
+              <span
+                className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                  sidebarOpen ? "opacity-0 " : " "
+                }`}
+              />
+              <span
+                className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                  sidebarOpen ? " top-[-8px] -rotate-45" : " "
+                }`}
+              />
+            </button>
+          )}
         </div>
         <div className={s.navbar_center}>
           <img src="/double_arrow_left.svg" alt="logo" />
@@ -247,7 +266,8 @@ export default function Dashboard() {
           <img src="/double_arrow_right.svg" alt="logo" />
         </div>
         <div className={s.navbar_right}>
-          <UserDropdown user={user} />
+          <h3>Welcome {user.displayName}!</h3>
+          <img src={user.photoURL} alt="logo" />
         </div>
       </div>
       <div className={s.content}>
@@ -297,27 +317,37 @@ export default function Dashboard() {
                             newCoverLetterOptions[index].title = e.target.value;
                             setCoverLetterOptions(newCoverLetterOptions);
                           }}
-                          onKeyDown={(e) => { if (e.key === 'Enter') { setLetterNameEdit(-1); saveCoverLetter(index); } }}
-                          onBlur={() => (setLetterNameEdit(-1) || saveCoverLetter(index))}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              setLetterNameEdit(-1);
+                              saveCoverLetter(index);
+                            }
+                          }}
+                          onBlur={() =>
+                            setLetterNameEdit(-1) || saveCoverLetter(index)
+                          }
                           blurOnSubmit={true}
                         />
                       ) : (
                         <p>{coverLetterOption.title}</p>
                       )}
                     </div>
-                    { letterNameEdit === -1 &&
-                    <div className={s.cover_letter_selector_button_right_icons}>
-                      <img
-                        src="/trash_icon.svg"
-                        alt="logo"
-                        onClick={() => deleteLetter(index)}
-                      />
-                      <img
-                        src="/edit_icon.svg"
-                        alt="logo"
-                        onClick={() => renameLetter(index)}
-                      />
-                    </div>}
+                    {letterNameEdit === -1 && (
+                      <div
+                        className={s.cover_letter_selector_button_right_icons}
+                      >
+                        <img
+                          src="/trash_icon.svg"
+                          alt="logo"
+                          onClick={() => deleteLetter(index)}
+                        />
+                        <img
+                          src="/edit_icon.svg"
+                          alt="logo"
+                          onClick={() => renameLetter(index)}
+                        />
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -328,7 +358,7 @@ export default function Dashboard() {
               <hr />
               <button className={s.subscription_button}>
                 <img src="/subscription_icon.svg" alt="logo" />
-                Subscription
+                Account
               </button>
               <button
                 className={s.logout_button}
@@ -367,24 +397,8 @@ export default function Dashboard() {
               onBlur={(e) => saveCoverLetter(e)}
             />
           </div>
-          <div className={s.content_center_input_container}>
-            <input
-              type="text"
-              placeholder="Additional instructions here"
-              value={additionalInstructions}
-              onChange={(e) => setAdditionalInstructions(e.target.value)}
-            />
-
-            <button
-              className={loading ? s.loading_button : null}
-              onClick={(e) => generateCoverLetter(e)}
-            >
-              GO!
-            </button>
-          </div>
         </div>
         <div className={s.content_right}>
-          <h2>Details</h2>
           <div className={s.input_container}>
             <label htmlFor="Job input">Job Title</label>
             <input
@@ -409,6 +423,19 @@ export default function Dashboard() {
               onChange={(e) => setJobLocation(e.target.value)}
               value={jobLocation}
               id="Location input"
+              className={s.content_right_input}
+            />
+          </div>
+
+          <div className={s.input_container}>
+            <label htmlFor="Additional Instructions">
+              Additional instructions here
+            </label>
+            <input
+              type="text"
+              id="Additional Instructions"
+              value={additionalInstructions}
+              onChange={(e) => setAdditionalInstructions(e.target.value)}
               className={s.content_right_input}
             />
           </div>
@@ -451,6 +478,12 @@ export default function Dashboard() {
               Upload CV
             </label>
           </div>
+          <button
+            className={loading ? s.loading_button : s.generate_button}
+            onClick={(e) => generateCoverLetter(e)}
+          >
+            GO!
+          </button>
         </div>
       </div>
     </div>
