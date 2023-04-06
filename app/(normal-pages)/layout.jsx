@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       */}
       <head />
 
-      <body className="dark:bg-black">
+      <body className="">
         <Providers>
           <Header />
           {children}
