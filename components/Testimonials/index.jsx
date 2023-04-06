@@ -16,16 +16,16 @@ const testimonialData = [
     name: "David Wing",
     designation: "Founder @GPTCoverletter",
     content:
-      "This website saved me countless hours of mind-numbing work. I can't believe how much time I wasted before I found this.",
+      "This website is going to save me countless hours of mind-numbing work. I can't believe how much time I would have left on the table.",
     image: "/wingface.png",
     star: 5,
   },
   {
     id: 3,
-    name: "Lethium Frenci",
-    designation: "Founder @Lineicons",
+    name: "",
+    designation: "",
     content:
-      "I am so happy to be able to meet my applications goals with GPTCoverLetter! It would have been impossible without this tool.",
+      "",
     image: "/images/testimonials/auth-03.png",
     star: 5,
   },
