@@ -4,17 +4,17 @@ import SingleTestimonial from "./SingleTestimonial";
 const testimonialData = [
   {
     id: 1,
-    name: "Musharof Chy",
-    designation: "Founder @TailGrids",
+    name: "Jayden Crowther",
+    designation: "Lead Dev @GPTCoverletter",
     content:
-      "This tool was absolutely amazing. I was able to create a suprising amount of cover letters in a short amount of time.",
-    image: "/images/testimonials/auth-01.png",
+      "R E V O L U T I O N A R Y. Completely eliminates all the tedious work and decision fatigue from the application process”",
+    image: "/testimonia1.png",
     star: 5,
   },
   {
     id: 2,
-    name: "Devid Weilium",
-    designation: "Founder @UIdeck",
+    name: "David Wing",
+    designation: "Founder @GPTCoverletter",
     content:
       "This website saved me countless hours of tedious work. I can't believe how much time I wasted before I found this.",
     image: "/images/testimonials/auth-02.png",
@@ -36,8 +36,8 @@ const Testimonials = () => {
     <section className="relative z-10 bg-primary/[.03] py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
-          title="What Our Users Says"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title="The People Have Spoken"
+          paragraph="GPTCoverletter is fundamentally changing the job-application game. Check out some of the feedback we've received,"
           center
         />
 
