@@ -37,10 +37,8 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 ///////////////////////////////////////////////////////////////
 //CONSIDER USING FIREBASE REDIRECT ON MOBILE INSTEAD OF POPUP//
 ///////////////////////////////////////////////////////////////
-
-const stripePromise = loadStripe(
-  "pk_test_51Mn4sZHpzbXtemiL0XN5qLTlaBxkoriYCe4gwg8Vq7TQxYs2CLpIC5HZahV7Xyf0EfKlq7JhzcG6GP2TTwjbsi8t00nALOso66"
-);
+const stripe_public_key = process.env.STRIPE_REAL_PUBLISHABLE_KEY;
+const stripePromise = loadStripe(stripe_public_key);
 
 function Freetrial() {
   ////firebase - firestore////
@@ -70,8 +68,8 @@ function Freetrial() {
   }
 
   ///////////stripe///////////
-  const basic_price_id = "price_1MpKHWHpzbXtemiLvV57mUHU";
-  const [clientSecret, setClientSecret] = useState("");
+  const basic_price_id = process.env.BASIC_PRICE_ID
+  const [clientSecret, setClientSecret] = useState('');
 
   const options = {
     clientSecret: clientSecret,
