@@ -46,7 +46,7 @@ function CheckoutForm(props) {
    const { error } = await stripe.confirmPayment({
      elements,
      confirmParams: {
-       return_url: "http://localhost:3000",
+       return_url: "https://www.gptcoverletter.com/dashboard",
      },
    });
    if (error.type === "card_error" || error.type === "validation_error") {
