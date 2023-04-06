@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "../../styles/index.css";
+import app from "../../components/FirebaseApp";
 
 export default function RootLayout({ children }) {
   return (
