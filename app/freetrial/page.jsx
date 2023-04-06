@@ -8,18 +8,7 @@ import {
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  setDoc,
-  doc,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-// import app from '../component/FirebaseApp'
-// import app from "../../components/FirebaseApp";
 import app from "../../components/FirebaseApp";
 import { useRouter } from "next/navigation";
 import {
@@ -33,16 +22,16 @@ import CheckoutForm from "./checkoutform";
 import useSWR from "swr";
 import { useDocument } from "react-firebase-hooks/firestore";
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import axios from "axios";
 
 ///////////////////////////////////////////////////////////////
 //CONSIDER USING FIREBASE REDIRECT ON MOBILE INSTEAD OF POPUP//
 ///////////////////////////////////////////////////////////////
-const stripe_public_key = process.env.STRIPE_REAL_PUBLISHABLE_KEY;
+const stripe_public_key = "pk_live_51Mn4sZHpzbXtemiLt1PgKGM0Eo9yKpKWABzs3WeLN24ayguAeJPJ6CGKaIcSOSNjtkzFvfDJzhPRSyRcchX1QQ3r007EVzNPJZ";
 const stripePromise = loadStripe(stripe_public_key);
 
 function Freetrial() {
   ////firebase - firestore////
-  const db = getFirestore(app);
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
   const router = useRouter();
@@ -68,53 +57,22 @@ function Freetrial() {
   }
 
   ///////////stripe///////////
-  const basic_price_id = process.env.BASIC_PRICE_ID
-  const [clientSecret, setClientSecret] = useState('');
-
-  const options = {
-    clientSecret: clientSecret,
-    appearance: { theme: "stripe" },
-  };
-
-  async function createCustomer(username, emailaddress, userid) {
-    const response = await fetch("/api/createstripecustomer", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: emailaddress,
-        name: username,
-        user_id: userid,
-      }),
-    });
-    const customer_object = await response.json();
-    return customer_object.id;
-  }
-
-  async function subscribeBasic(customer_id) {
-    const response = await fetch("/api/createstripesub", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        priceId: basic_price_id,
-        customerId: customer_id,
-      }),
-    });
-    const responseData = await response.json();
-    setClientSecret(responseData.clientSecret);
-  }
+  const basic_price_id = process.env.BASIC_PRICE_ID;
+  const [clientSecret, setClientSecret] = useState(undefined);
 
   async function setupPayment() {
     setPaymentLoading(true);
-    const customer_id = await createCustomer(
-      user.displayName,
-      user.email,
-      user.uid
-    );
-    const userRef = doc(db, "users", user.uid);
-    await updateDoc(userRef, {
-      stripe_customer_id: customer_id,
+    const response = await axios.post("/api/stripe", {
+      email: user.email,
+      name: user.displayName,
+      user_id: user.uid,
     });
-    await subscribeBasic(customer_id);
+    
+    // get the client secret from the response is json?
+    const client_secret = response.data.clientSecret;
+
+    setClientSecret(client_secret);
+    console.log("client secret: " + client_secret)
     setPaymentLoading(false);
   }
 
@@ -124,7 +82,7 @@ function Freetrial() {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       // we need to call the userLogin api
-      const res = await axios.post("/api/userLogin", {
+      await axios.post("/api/userLogin", {
         user_id: user.uid,
         email: user.email,
         displayname: user.displayName,
@@ -149,6 +107,10 @@ function Freetrial() {
   }
 
   if (clientSecret) {
+    const options = {
+      clientSecret: clientSecret,
+      appearance: { theme: "stripe" },
+    };
     return (
       <Elements options={options} stripe={stripePromise}>
         <CheckoutForm client_secret={clientSecret} />
