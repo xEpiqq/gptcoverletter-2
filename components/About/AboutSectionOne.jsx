@@ -24,8 +24,8 @@ const AboutSectionOne = () => {
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="You want that next job fast? This is for you."
-                paragraph="Speed is everything. Apply for various positions at insane speeds, and increase the odds of securing that next job with perfectly tailored cover letters."
+                title="Let's land that next job asap. This is for you."
+                paragraph="Speed is everything. GPTCoverletter lets you apply for various positions at insane speeds, and increases the odds of securing that next job with perfectly tailored cover letters."
                 mb="44px"
               />
 
