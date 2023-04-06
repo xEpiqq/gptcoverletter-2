@@ -46,7 +46,7 @@ function Freetrial() {
   }
 
   ///////////stripe///////////
-  const basic_price_id = "price_1MpKHWHpzbXtemiLvV57mUHU"
+  const basic_price_id = process.env.BASIC_PRICE_ID
   const [clientSecret, setClientSecret] = useState('');
 
   const options = {
