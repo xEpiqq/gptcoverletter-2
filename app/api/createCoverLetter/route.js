@@ -42,7 +42,7 @@ export async function POST(request) {
 
     const prompt = 'You will create a cover letter for a job at ' + jobCompany + ' as a ' + jobTitle + '. The job is located in ' + jobLocation + '. The job description is: ' + jobDescription + '. Additional instructions are: ' + additionalInstructions + '. Your resume is attached. the resume is ' + resumePdf + '.';
 
-    const completion = await openai.createChatCompletion({
+    const completion = openai.createChatCompletion({
       model: model,
       messages: [{ role: "system", content: prompt }],
       temperature: creativityMeter / 50,
