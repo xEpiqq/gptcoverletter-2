@@ -6,9 +6,18 @@ import { getFirestore, collection, addDoc, setDoc, doc, getDoc, updateDoc, query
 import app from '../../components/FirebaseApp'
 
 const db = getFirestore(app);
-const stripe_secret_key = process.env.STRIPE_REAL_SECRET_KEY;
-const stripe = Stripe(stripe_secret_key)
-const endpointSecret = process.env.STRIPE_WEBHOOK_ENDPOINT;
+///////////////////////////STRIPE LIVE MODE/////////////////////////////
+// const stripe_secret_key = process.env.STRIPE_REAL_SECRET_KEY; // production mode
+// const stripe = Stripe(stripe_secret_key) // production mode
+// const endpointSecret = process.env.STRIPE_WEBHOOK_ENDPOINT; // production mode
+////////////////////////////////////////////////////////////////////////
+
+///////////////////////////STRIPE TEST MODE/////////////////////////////
+const stripe_secret_test_key = process.env.STRIPE_SECRET_TEST_KEY; // test mode
+const stripe = Stripe(stripe_secret_test_key) // test mode
+const endpointSecret = "whsec_8e2ff906dd09de3e52c1c391f3ed020eabc58cf1e305bda9166d52ccddb89e01" // test mode
+////////////////////////////////////////////////////////////////////////
+
 
 export const config = {
     api: {
@@ -71,7 +80,7 @@ async function subscriptionCreated(dataObject) {
   await updateDoc(docRef, {
     productid: product_id,
     subscriptionid: subscription_id,
-    subscriptionstatus: subscription_status,
+    subscription_status: subscription_status,
     customerid: customer_id
   });
 
@@ -94,7 +103,7 @@ async function subscriptionUpdated(dataObject) {
   await updateDoc(docRef, {
     productid: product_id,
     subscriptionid: subscription_id,
-    subscriptionstatus: subscription_status,
+    subscription_status: subscription_status,
     customerid: customer_id
   });
 }

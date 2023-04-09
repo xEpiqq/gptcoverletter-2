@@ -19,7 +19,7 @@ export async function POST(request) {
             await userRef.set({
                 name: displayname,
                 email: email,
-                sub: "none",
+                stripe_customer_id: "none",
             });
             console.log("User document created");
         }

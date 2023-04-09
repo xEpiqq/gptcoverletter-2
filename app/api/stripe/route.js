@@ -1,17 +1,26 @@
 import db from "@/utils/db";
 import Stripe from "stripe";
+import { getFirestore, collection, addDoc, setDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import app from '../../../components/FirebaseApp'
+const dbtwo = getFirestore(app);
 
-const stripe_secret_key = process.env.STRIPE_REAL_SECRET_KEY;
-const stripe = Stripe(stripe_secret_key);
+///////////////////////////STRIPE LIVE MODE/////////////////////////////
+// const stripe_secret_key = process.env.STRIPE_REAL_SECRET_KEY; // production mode
+// const stripe = Stripe(stripe_secret_key); // production mode
+// const basic_price_id = process.env.BASIC_PRICE_ID;
+////////////////////////////////////////////////////////////////////////
+
+///////////////////////////STRIPE TEST MODE/////////////////////////////
+const stripe_secret_test_key = process.env.STRIPE_SECRET_TEST_KEY; // test mode
+const stripe = Stripe(stripe_secret_test_key) // test mode
+const basic_price_id = "price_1MoSC4HpzbXtemiLsVTqsFIG"
+////////////////////////////////////////////////////////////////////////
 
 export async function POST(request) {
   const body = await request.json();
   const { email, name, user_id } = body;
-
-  const basic_price_id = process.env.BASIC_PRICE_ID;
-
-  const userRef = db.collection("users").doc(user_id);
-  const userDoc = await userRef.get();
+  const userRef = doc(dbtwo, "users", user_id);
+  const userDoc = await getDoc(userRef);
 
   if (!userRef) {
     return new Response("User not found", { status: 404 });
@@ -38,15 +47,19 @@ export async function POST(request) {
       metadata: {
         uid: user_id,
       },
-    });
+    });    
     customer_id = customer.id;
-    await userRef.update({ customer_id: customer_id });
-  }
-  console.log(`customer_id: ${customer_id}`)
 
+  }
+
+  await updateDoc(userRef, {
+    stripe_customer_id: customer_id
+  })
+  console.log(`customer_id: ${customer_id}`)
   // return client secert
   console.log(customer_id)
   console.log(basic_price_id)
+
   try {
     const subscription = await stripe.subscriptions.create({
       customer: customer_id,
