@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {PaymentElement, useStripe, useElements} from "@stripe/react-stripe-js";
 import s from "./freetrial.module.scss";
 
- 
 function CheckoutForm(props) {
  const stripe = useStripe();
  const elements = useElements();
@@ -62,7 +61,7 @@ function CheckoutForm(props) {
   <div className={s.paget}>
     <div className={s.pleft}>
       <div className={s.leftbox}>
-        <h1 className={s.bigtext}>Gain full access to GPTCoverLetter</h1>
+        <h1 className={s.bigtext}>Gain full access to GPTCoverLetter <span className="text-primary">$9.99/mo</span></h1>
         <div className={s.bar}>
           <div className={s.cbartwo}/>
         </div>
@@ -78,9 +77,7 @@ function CheckoutForm(props) {
               {/* {message && <div className={s.errormessage}>{message}</div>} */}
             </form>
         </div>
-
       </div>
-
     </div>
     <div className={s.pright}></div>
   </div>

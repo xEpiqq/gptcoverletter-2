@@ -1,7 +1,23 @@
+'use client'
 import Link from "next/link";
 import GoogleLogin from "@/components/GoogleLogin";
+import { useAuthState } from "react-firebase-hooks/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+} from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 const SigninPage = () => {
+  const auth = getAuth();
+  const [user, loading, error] = useAuthState(auth);
+  const router = useRouter();
+  if (user) {
+    router.push("/dashboard");
+  }
+
   return (
     <>
       <section className="relative z-10 overflow-hidden pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
@@ -13,7 +29,7 @@ const SigninPage = () => {
                   Sign in to your account
                 </h3>
                 <p className="mb-11 text-center text-base font-medium text-body-color">
-                  Login to your account for a faster checkout.
+                  Job applications left and right.
                 </p>
                 <GoogleLogin />
               </div>

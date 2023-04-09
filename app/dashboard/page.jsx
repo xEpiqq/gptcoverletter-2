@@ -225,7 +225,7 @@ export default function Dashboard() {
 
   if (user && data) {
     if (data.subscription_status != "active") {
-      router.push("/freetrial");
+      router.push("/subscribe");
     } else {
       console.log("user is logged in / subscribed");
     }
