@@ -6,17 +6,18 @@ import { getFirestore, collection, addDoc, setDoc, doc, getDoc, updateDoc, query
 import app from '../../components/FirebaseApp'
 
 const db = getFirestore(app);
-///////////////////////////STRIPE LIVE MODE/////////////////////////////
-// const stripe_secret_key = process.env.STRIPE_REAL_SECRET_KEY; // production mode
-// const stripe = Stripe(stripe_secret_key) // production mode
-// const endpointSecret = process.env.STRIPE_WEBHOOK_ENDPOINT; // production mode
-////////////////////////////////////////////////////////////////////////
 
-///////////////////////////STRIPE TEST MODE/////////////////////////////
-const stripe_secret_test_key = process.env.STRIPE_SECRET_TEST_KEY; // test mode
-const stripe = Stripe(stripe_secret_test_key) // test mode
-const endpointSecret = "whsec_8e2ff906dd09de3e52c1c391f3ed020eabc58cf1e305bda9166d52ccddb89e01" // test mode
-////////////////////////////////////////////////////////////////////////
+/////////////////////////STRIPE LIVE MODE/////////////////////////////
+const stripe_secret_key = process.env.STRIPE_REAL_SECRET_KEY; // production mode
+const stripe = Stripe(stripe_secret_key) // production mode
+const endpointSecret = process.env.STRIPE_WEBHOOK_ENDPOINT; // production mode
+//////////////////////////////////////////////////////////////////////
+
+// ///////////////////////////STRIPE TEST MODE/////////////////////////////
+// const stripe_secret_test_key = process.env.STRIPE_SECRET_TEST_KEY; // test mode
+// const stripe = Stripe(stripe_secret_test_key) // test mode
+// const endpointSecret = "whsec_8e2ff906dd09de3e52c1c391f3ed020eabc58cf1e305bda9166d52ccddb89e01" // test mode
+// ////////////////////////////////////////////////////////////////////////
 
 
 export const config = {
@@ -51,7 +52,7 @@ export default async function stripe_webhook(req, res) {
             subscriptionUpdated(dataObject)
             break
         case 'customer.subscription.deleted':
-            console.log('%c customer subscription deleted!!!', 'color: green; font-size: 20px;')
+            subscriptionDeleted(dataObject)
             break;
         default:
         
@@ -77,12 +78,13 @@ async function subscriptionCreated(dataObject) {
   // Check if the query snapshot has any documents
   const docRef = querySnap.docs[0].ref;
   // Update the fields of the document with the specified data
-  await updateDoc(docRef, {
-    productid: product_id,
-    subscriptionid: subscription_id,
-    subscription_status: subscription_status,
-    customerid: customer_id
-  });
+  // await updateDoc(docRef, {
+  //   productid: product_id,
+  //   subscriptionid: subscription_id,
+  //   subscription_status: subscription_status,
+  //   customerid: customer_id
+  // });
+  // dont add to the database yet. it can overwrite an active subscription with "incomplete"
 
 }
 
@@ -104,6 +106,18 @@ async function subscriptionUpdated(dataObject) {
     productid: product_id,
     subscriptionid: subscription_id,
     subscription_status: subscription_status,
-    customerid: customer_id
+  });
+}
+
+async function subscriptionDeleted(dataObject) {
+  console.log('customer subscription deleted!!!')
+  const customer_id = dataObject.customer
+  const usersRef = collection(db, "users");
+  const queryRef = query(usersRef, where("stripe_customer_id", "==", customer_id));
+  const querySnap = await getDocs(queryRef);
+  const docRef = querySnap.docs[0].ref;
+
+  await updateDoc(docRef, {
+    subscription_status: "cancelled",
   });
 }

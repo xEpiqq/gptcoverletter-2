@@ -23,17 +23,17 @@ import useSWR from "swr";
 import { useDocument } from "react-firebase-hooks/firestore";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import axios from "axios";
+import GoogleLogin from "@/components/GoogleLogin";
 
+/////////////////////////STRIPE LIVE MODE/////////////////////////////
+const stripe_public_key = "pk_live_51Mn4sZHpzbXtemiLt1PgKGM0Eo9yKpKWABzs3WeLN24ayguAeJPJ6CGKaIcSOSNjtkzFvfDJzhPRSyRcchX1QQ3r007EVzNPJZ" // production mode
+const stripePromise = loadStripe(stripe_public_key) // production mode
+//////////////////////////////////////////////////////////////////////
 
-///////////////////////////STRIPE LIVE MODE/////////////////////////////
-// const stripe_public_key = "pk_live_51Mn4sZHpzbXtemiLt1PgKGM0Eo9yKpKWABzs3WeLN24ayguAeJPJ6CGKaIcSOSNjtkzFvfDJzhPRSyRcchX1QQ3r007EVzNPJZ" // production mode
-// const stripePromise = loadStripe(stripe_public_key) // production mode
-////////////////////////////////////////////////////////////////////////
-
-///////////////////////////STRIPE TEST MODE/////////////////////////////
-const stripe_public_key = "pk_test_51Mn4sZHpzbXtemiL0XN5qLTlaBxkoriYCe4gwg8Vq7TQxYs2CLpIC5HZahV7Xyf0EfKlq7JhzcG6GP2TTwjbsi8t00nALOso66" // test mode
-const stripePromise = loadStripe(stripe_public_key) // test mode
-////////////////////////////////////////////////////////////////////////
+// ///////////////////////////STRIPE TEST MODE/////////////////////////////
+// const stripe_public_key = "pk_test_51Mn4sZHpzbXtemiL0XN5qLTlaBxkoriYCe4gwg8Vq7TQxYs2CLpIC5HZahV7Xyf0EfKlq7JhzcG6GP2TTwjbsi8t00nALOso66" // test mode
+// const stripePromise = loadStripe(stripe_public_key) // test mode
+// ////////////////////////////////////////////////////////////////////////
 
 
 
@@ -147,20 +147,9 @@ function Freetrial() {
               <h2 className={s.box_st}>Create account with</h2>
               <h2 className={s.box_st}>1 / 2</h2>
             </div>
-            {!user ? (
-              <div className={s.btns}>
-                <button onClick={googleLogin} className={s.authbtn}>
-                  <img src="/google.png" className={s.googleimg} /> Sign up with
-                  Google
-                </button>
-
-                {/* <button
-                  className={`${s.authbtn} ${s.fb}`}
-                  onClick={googleLogin}
-                >
-                  <img src="/facebook.png" className={s.googleimg} /> Sign up
-                  with Facebook
-                </button> */}
+            {!user ? ( 
+              <div className="bg-primary w-full h-4 ">
+              <GoogleLogin/>
               </div>
             ) : (
               <div className={s.btns}>

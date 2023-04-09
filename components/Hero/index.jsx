@@ -46,7 +46,7 @@ const Hero = () => {
                     Write my letter now!
                   </Link>
                   <Link
-                    href="/signup"
+                    href="/subscribe"
                     className="rounded-md bg-black/20 py-4 px-8 text-base font-semibold text-black duration-300 ease-in-out hover:bg-black/30 dark:bg-white/20 dark:text-white dark:hover:bg-white/30"
                   >
                     Sign up

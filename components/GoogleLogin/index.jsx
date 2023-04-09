@@ -26,7 +26,6 @@ const GoogleLogin = () => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      router.push("/dashboard");
 
       // we need to call the userLogin api
       const res = await axios.post("/api/userLogin", {
