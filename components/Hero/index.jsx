@@ -23,8 +23,8 @@ const Hero = () => {
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-7xl md:leading-tight">
                 Generate  cover letters <span className="text-primary" >in 9 seconds</span>, using ai 
                 </h1>
-
-                <div className="w-100 h-40 border-black bg-white text-black font-semibold">
+                {/* make the div always taller than the text*/}
+                <div className="mb-4 w-100 h-80 border-black text-black dark:text-white font-semibold sm:h-40">
                 <span>
                   <Typewriter
                     words={ipsum_words}
