@@ -26,20 +26,16 @@ const GoogleLogin = () => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      router.push("/dashboard");
 
       // we need to call the userLogin api
-      const res = await axios.post("/api/userLogin", {
+      const res = axios.post("/api/userLogin", {
         user_id: user.uid,
         email: user.email,
         displayname: user.displayName,
       });
 
-      const additionalUserInfo = await getAdditionalUserInfo(result);
+      router.push("/dashboard");
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // const email = error.customData.email;
       const credential = GoogleAuthProvider.credentialFromError(error);
     }
   }

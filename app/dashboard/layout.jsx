@@ -1,3 +1,5 @@
+import "./globals.css"
+
 const Layout = ({ children }) => {
   return (
     <html suppressHydrationWarning lang="en">

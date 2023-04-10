@@ -5,6 +5,8 @@ export async function POST(request) {
     const body = await request.json();
     const { user_id, displayname, email } = body;
 
+    console.log("user_id: " + user_id);
+
     try {
         // get the user document
         const userRef = db.collection("users").doc(user_id);
@@ -19,7 +21,8 @@ export async function POST(request) {
             await userRef.set({
                 name: displayname,
                 email: email,
-                sub: "none",
+                subscription_status: "none",
+                freetrial: true,
             });
             console.log("User document created");
         }

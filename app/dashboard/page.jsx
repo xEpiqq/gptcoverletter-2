@@ -9,6 +9,7 @@ import * as pdfjsLib from "pdfjs-dist/webpack";
 import app from "../../components/FirebaseApp";
 import useSWR from "swr";
 import Link from "next/link";
+import UpgradePopup from "@/components/UpgradePopup";
 
 import axios from "axios";
 
@@ -59,13 +60,13 @@ export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [letterNameEdit, setLetterNameEdit] = useState(-1);
+  const [upgrade_popup, setUpgradePopup] = useState(false);
 
   const [letterTextFlag, setLetterTextFlag] = useState(false);
 
   const uploadResume = (e) => {};
 
   useEffect(() => {
-    console.log("user", user);
     if (!user) return;
 
     axios.get("/api/letters/usersLetters?id=" + user.uid).then((res) => {
@@ -78,7 +79,6 @@ export default function Dashboard() {
       return;
     }
     setLetterTextFlag(false);
-    console.log("openletteroptions", coverLetterOptions[openLetter]);
     axios.post(
       "/api/letters/letter",
       {
@@ -96,8 +96,6 @@ export default function Dashboard() {
   };
 
   const createCoverLetter = (e) => {
-    console.log("user.uid", user.uid);
-
     axios.put(
       "/api/letters/letter",
       {
@@ -180,7 +178,7 @@ export default function Dashboard() {
 
     setLoading(true);
 
-    const data = {
+    const apidata = {
       jobTitle,
       jobCompany,
       jobLocation,
@@ -191,14 +189,20 @@ export default function Dashboard() {
       user_id: user.uid,
     };
 
-    console.log(data);
+    console.log("subscription status", data.subscription_status);
+    const trial = data.subscription_status != "active";
+    console.log("trial", trial);
+    const url = trial
+      ? "/api/createCoverLetterSample"
+      : "/api/createCoverLetter";
+    console.log("url", url);
 
-    const res = await fetch("/api/createCoverLetter", {
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(apidata),
     });
 
     const json = await res.json();
@@ -215,7 +219,7 @@ export default function Dashboard() {
     if (!res.ok) throw Error(json.message);
   };
 
-  if (loadingUser) {
+  if (loadingUser || swrisLoading || !data) {
     return <div>Loading...</div>;
   }
 
@@ -223,16 +227,12 @@ export default function Dashboard() {
     router.push("/login");
   }
 
-  if (user && data) {
-    if (data.subscription_status != "active") {
-      router.push("/freetrial");
-    } else {
-      console.log("user is logged in / subscribed");
-    }
-  }
-
   return (
     <div className={s.page}>
+      {upgrade_popup && (
+          <UpgradePopup
+          />
+      )}
       <div className={s.navbar}>
         <div className={s.navbar_left}>
           <img className={s.logo} src="/logo_blue.svg" alt="logo" />
@@ -357,11 +357,11 @@ export default function Dashboard() {
           <div className={s.content_left_bottom}>
             <div className={s.container}>
               <hr />
-              <Link className={s.subscription_button} href={'/account'}>
+              <Link className={s.subscription_button} href={"/account"}>
                 <img src="/subscription_icon.svg" alt="logo" />
                 Account
               </Link>
-              <Link className={s.logout_button} href={'/'}>
+              <Link className={s.logout_button} href={"/"}>
                 <img src="/subscription_icon.svg" alt="logo" />
                 Home
               </Link>
@@ -371,7 +371,7 @@ export default function Dashboard() {
                   signOut(auth);
                   router.push("/");
                 }}
-                href={'/'}
+                href={"/"}
               >
                 <img src="/logout_icon.svg" alt="logo" />
                 Logout
@@ -484,12 +484,34 @@ export default function Dashboard() {
               Upload CV
             </label>
           </div>
-          <button
-            className={loading ? s.loading_button : s.generate_button}
-            onClick={(e) => generateCoverLetter(e)}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "row",
+              width: "100%",
+              gap: "10px",
+            }}
           >
-            GO!
-          </button>
+            <button
+              className={loading ? s.loading_button : s.generate_button}
+              onClick={(e) => generateCoverLetter(e)}
+            >
+              GO!
+            </button>
+            {data.subscription_status !== "active" && (
+              <button
+                className={s.generate_button}
+                onClick={(e) => setUpgradePopup(true)}
+                style={{
+                  backgroundColor: "#4A6CF7",
+                  boxShadow: "0px 4px 4px rgba(74, 108, 247, 0.25)",
+                }}
+              >
+                Upgrade to Pro
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

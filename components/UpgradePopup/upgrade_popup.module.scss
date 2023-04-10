@@ -1,0 +1,362 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: linear-gradient(180deg, #fff 0%, #96a1ff 200%);
+
+  * {
+    font-family: "Kodchasan", sans-serif;
+  }
+
+  @media (max-height: 768px) {
+    height: 100%;
+    padding-bottom: 4rem;
+  }
+}
+
+.logo {
+  margin-top: 3rem;
+  width: 20rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.box {
+  padding-top: 2.6rem;
+  margin-top: 3rem;
+  width: 37rem;
+  height: 37rem;
+  background-color: white;
+  box-shadow: 0px 0px 40px 15px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  border: 4px solid linear-gradient(180deg, #fff 0%, #d27653 100%);
+  align-items: center;
+  justify-content: center;
+  .box_lt {
+    text-align: center;
+    color: black;
+    margin: 0;
+    font-family: "Lexend Deca";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 3rem;
+  }
+  .box_st {
+    margin: 0;
+    font-family: "Lexend Deca";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    text-align: center;
+    color: black;
+    margin-top: 0.75rem;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    .box_lt {
+      font-size: 2.5rem;
+    }
+    .box_st {
+      font-size: 1rem;
+    }
+  }
+}
+
+.bar {
+  width: 80%;
+  height: 0.5rem;
+  border-radius: 10px;
+  margin: 1rem auto;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: #e4e6e8;
+  .cbar {
+    width: 50%;
+    height: 100%;
+    border-radius: 10px;
+    background: #bfb3ff;
+  }
+}
+
+.onetwo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-top: -1rem;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.75rem;
+  gap: 2rem;
+}
+
+.authbtn {
+  width: 80%;
+  height: 3.8rem;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  color: black;
+  font-family: "Lexend Deca";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid #c3bfff;
+  position: relative;
+  img {
+    position: absolute;
+    left: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 6.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  &:hover {
+    background: #96a1ff;
+    border-color: #96a1ff;
+  }
+}
+
+.fb {
+  img {
+    width: 1.86rem;
+    height: 1.86rem;
+    margin-right: 5.7rem;
+  }
+}
+
+.cbar {
+  animation: cbar 2.5s ease-in-out infinite;
+  @keyframes cbar {
+    0% {
+      width: 49%;
+    }
+    50% {
+      width: 51%;
+    }
+    100% {
+      width: 49%;
+    }
+  }
+}
+
+// STEP 2 PAGE
+.paget {
+  position: fixed;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background: linear-gradient(180deg, #fff 0%, #96a1ff 200%);
+
+  // center of the screen
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 9999;
+}
+
+.pleft {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 1px solid green;
+}
+
+.leftbox {
+  padding-top: 2.6rem;
+  width: 37rem;
+  height: 90%;
+  background-color: #f4f4f4;
+  box-shadow: 0px 0px 40px 15px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  border: 4px solid linear-gradient(180deg, #fadc9e 0%, #d27653 100%);
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2rem;
+  .bigtext {
+    text-align: center;
+    color: black;
+    margin: 0;
+    font-family: "Lexend Deca";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 2.5rem;
+  }
+  .box_st {
+    margin: 0;
+    font-family: "Lexend Deca";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    text-align: center;
+    color: black;
+    margin-top: 0.75rem;
+  }
+}
+
+.cbartwo {
+  width: 86%;
+  height: 100%;
+  border-radius: 10px;
+  background: #bfb3ff;
+}
+
+.cbartwo {
+  animation: cbar 2.5s ease-in-out infinite;
+  @keyframes cbar {
+    0% {
+      width: 86%;
+    }
+    50% {
+      width: 87%;
+    }
+    100% {
+      width: 86%;
+    }
+  }
+}
+
+.stripe {
+  margin-top: 1.5rem;
+  margin-left: 4.5rem;
+  margin-right: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stripe_button {
+  display: flex;
+  width: 100%;
+  margin-top: 2.5rem;
+  background: #bfb3ff;
+  background: transparent;
+  // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: none;
+  border: 2px solid #96a1ff;
+  height: 3.5rem;
+  color: #352e3e;
+  font-family: "Lexend Deca";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    background: #bfb3ff;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.ldsring {
+  display: inline-block;
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+.loading_text {
+  font-family: "Lexend Deca";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: #352e3e;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-right: 3rem;
+}
+.ldsring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  margin: 16px;
+  border: 16px solid #352e3e;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #352e3e transparent transparent transparent;
+}
+.ldsring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.ldsring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.ldsring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rollerpage {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #fff 0%, #96a1ff 200%);
+  h1 {
+    font-family: "Lexend Deca";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0;
+    margin-top: 2.5rem;
+  }
+}
