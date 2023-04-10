@@ -23,6 +23,7 @@ export async function POST(request) {
                 email: email,
                 subscription_status: "none",
                 freetrial: true,
+                stripe_customer_id: "none",
             });
             console.log("User document created");
         }

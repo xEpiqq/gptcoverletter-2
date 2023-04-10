@@ -227,6 +227,14 @@ export default function Dashboard() {
     router.push("/login");
   }
 
+  if (user && data) {
+    if (data.subscription_status != "active") {
+      router.push("/subscribe");
+    } else {
+      console.log("user is logged in / subscribed");
+    }
+  }
+
   return (
     <div className={s.page}>
       {upgrade_popup && (
