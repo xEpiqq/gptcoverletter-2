@@ -64,7 +64,16 @@ function CheckoutForm(props) {
     <div className={s.paget}>
       <div className={s.pleft}>
         <div className={s.leftbox}>
-          <h1 className={s.bigtext}>Gain full access to GPTCoverLetter</h1>
+          <h1 className={s.bigtext}>
+            Gain full access to GPTCoverLetter{" "}
+            <span
+              style={{
+                color: "#4A6CF7",
+              }}
+            >
+              $9.99/mo
+            </span>
+          </h1>
 
           <div className={s.stripe}>
             <form onSubmit={handleSubmit}>
