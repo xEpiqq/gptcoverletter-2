@@ -224,7 +224,7 @@ export default function Dashboard() {
   }
 
   if (!user) {
-    router.push("/login");
+    router.push("/signin");
   }
 
   return (
@@ -362,7 +362,7 @@ export default function Dashboard() {
                 Account
               </Link>
               <Link className={s.logout_button} href={"/"}>
-                <img src="/subscription_icon.svg" alt="logo" />
+                <img src="/home_icon.svg" alt="logo" />
                 Home
               </Link>
               <Link
