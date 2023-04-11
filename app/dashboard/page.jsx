@@ -81,7 +81,7 @@ export default function Dashboard() {
     if (coverLetterOptions[openLetter].id === undefined) {
       return;
     }
-    if (coverLetterOptions[openLetter].contents.trim() === "") {
+    if (coverLetterOptions[openLetter].contents === "") {
       return;
     }
     setLetterTextFlag(false);
