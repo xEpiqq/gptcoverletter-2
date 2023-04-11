@@ -78,6 +78,12 @@ export default function Dashboard() {
     if (!letterTextFlag) {
       return;
     }
+    if (coverLetterOptions[openLetter].id === undefined) {
+      return;
+    }
+    if (coverLetterOptions[openLetter].contents.trim() === "") {
+      return;
+    }
     setLetterTextFlag(false);
     axios.post(
       "/api/letters/letter",
@@ -289,6 +295,7 @@ export default function Dashboard() {
                 return (
                   <div
                     className={s.cover_letter_selector_button}
+                    style={index === openLetter ? {backgroundColor: "#d3d3d3"} : {}}
                     key={`coverLetterOption-${index}`}
                   >
                     <div
@@ -384,7 +391,7 @@ export default function Dashboard() {
             <textarea
               type="text"
               placeholder=""
-              value={coverLetterOptions[openLetter].contents}
+              value={coverLetterOptions[openLetter] ? coverLetterOptions[openLetter].contents: ""}
               onChange={(e) => {
                 setLetterTextFlag(true);
                 setCoverLetterOptions(
