@@ -162,9 +162,10 @@
       margin-top: 1rem;
 
       // background from the image button.png in the public folder
-      opacity: 0.8;
 
       border-radius: 5px;
+
+      background-image: linear-gradient(315deg, #ffffff 0%, #d3d3d3 74%);
 
       color: black;
 
@@ -236,10 +237,15 @@
         }
 
         p {
-          font-size: 0.7rem;
+          font-size: 0.6rem;
           font-weight: 500;
           color: #2E2E2E;
+          // overflow should ...
+          max-width: 50%;
+          overflow: hidden;
         }
+
+        position: relative;
 
         .cover_letter_selector_button_right_icons {
           display: flex;
@@ -249,6 +255,11 @@
           gap: 1rem;
           flex: 1;
           margin-right: 0.3rem;
+
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
 
           img {
             width: 1rem;
@@ -474,10 +485,11 @@
     background-color: #362f3a;
     color: #fff;
     font-size: 0.7rem;
-    width: 100%;
+    width: 95%;
     height: 2rem;
     border-radius: 5px;
-    border: none;
+    margin-bottom: 0;
+    border: 1.5px solid #414243;
 
     display: flex;
     flex-direction: row;
