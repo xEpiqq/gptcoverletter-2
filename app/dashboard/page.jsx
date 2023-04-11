@@ -22,7 +22,7 @@ export default function Dashboard() {
   const [user, loadingUser, error] = useAuthState(auth);
 
   // fetch user data from firestore
-  const { data, swrerror, swrisLoading } = useSWR(
+  const { data = {subscription_status: "none"}, swrerror, swrisLoading } = useSWR(
     "/api/firestoreUserData",
     (url) => {
       return fetch(url, {
@@ -219,7 +219,7 @@ export default function Dashboard() {
     if (!res.ok) throw Error(json.message);
   };
 
-  if (loadingUser || swrisLoading || !data) {
+  if (loadingUser || swrisLoading) {
     return <div>Loading...</div>;
   }
 
