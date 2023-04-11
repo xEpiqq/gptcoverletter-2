@@ -4,8 +4,6 @@ import ScrollToTop from "@/components/ScrollToTop";
 import "node_modules/react-modal-video/css/modal-video.css";
 import "../../styles/index.css";
 import app from "../../components/FirebaseApp";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import * as gtag from "../../lib/gtag";
 import './globals.css'
 
