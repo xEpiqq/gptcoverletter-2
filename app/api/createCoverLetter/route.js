@@ -7,10 +7,9 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-import db from '../../../utils/db';
+import db from "../../../utils/db";
 
 export async function POST(request) {
-
   const body = await request.json();
   const {
     jobTitle,
@@ -25,7 +24,7 @@ export async function POST(request) {
 
   // check if the user has the correct permissions on firebase
   // if not, return an error
-  const userRef = db.collection("Users").doc(user_id);
+  const userRef = db.collection("users").doc(user_id);
   const userDoc = await userRef.get();
 
   if (!userDoc.exists) {
@@ -33,21 +32,36 @@ export async function POST(request) {
   }
 
   if (userDoc.data().subscription_active == "none") {
-    console.log('User does not have a subscription')
-    return new Response( JSON.stringify({ error: "User does not have a subscription" }));
+    console.log("User does not have a subscription");
+    return new Response(
+      JSON.stringify({ error: "User does not have a subscription" })
+    );
   }
 
   try {
     const model = "gpt-3.5-turbo";
 
-    const prompt = 'You will create a cover letter for a job at ' + jobCompany + ' as a ' + jobTitle + '. The job is located in ' + jobLocation + '. The job description is: ' + jobDescription + '. Additional instructions are: ' + additionalInstructions + '. Your resume is attached. the resume is ' + resumePdf + '.';
+    const prompt =
+      "You will create a cover letter for a job at " +
+      jobCompany +
+      " as a " +
+      jobTitle +
+      ". The job is located in " +
+      jobLocation +
+      ". The job description is: " +
+      jobDescription +
+      ". Additional instructions are: " +
+      additionalInstructions +
+      ". Your resume is attached. the resume is " +
+      resumePdf +
+      ".";
 
     const completion = await openai.createChatCompletion({
       model: model,
       messages: [{ role: "system", content: prompt }],
       temperature: creativityMeter / 50,
     });
-    console.log(completion.data)
+    console.log(completion.data);
 
     if (completion.data.choices[0].text == "undefined") {
       return new Response(JSON.stringify({ data: "undefined" }));
