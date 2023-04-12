@@ -7,19 +7,19 @@ import app from "../../components/FirebaseApp";
 import * as gtag from "../../lib/gtag";
 import './globals.css'
 
-// export const metadata = {
-//   title: "GPTCoverLetter",
-//   description: "Generate cover letters for your job applications using GPT-3.5",
+export const metadata = {
+  title: "GPTCoverLetter",
+  description: "Generate cover letters for your job applications using GPT-3.5",
 
-//   type: "website",
-//   icons: {
-//     icon: "/logo_blue.svg",
-//     shortcut: "/logo_blue.svg",
-//   },
+  type: "website",
+  icons: {
+    icon: "/logo_blue.svg",
+    shortcut: "/logo_blue.svg",
+  },
 
-//   // index the page
-//   robots: "index, follow",
-// };
+  // index the page
+  robots: "index, follow",
+};
 
 export default function RootLayout({ children }) {
 
