@@ -8,7 +8,6 @@ const stripe = Stripe(stripe_secret_key); // production mode
 // ///////////////////////////STRIPE TEST MODE/////////////////////////////
 // const stripe_secret_test_key = process.env.STRIPE_SECRET_TEST_KEY; // test mode
 // const stripe = Stripe(stripe_secret_test_key) // test mode
-// const basic_price_id = "price_1MoSC4HpzbXtemiLsVTqsFIG"
 // ////////////////////////////////////////////////////////////////////////
 
 export async function POST(request) {
