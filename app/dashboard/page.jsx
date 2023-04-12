@@ -277,7 +277,7 @@ export default function Dashboard() {
           <img src={user.photoURL} alt="logo" />
         </div>
       </div>
-      <div className={s.content}>
+      <div className={upgrade_popup ? s.content_disable: s.content}>
         <div
           className={sidebarOpen ? s.content_left_open : s.content_left_closed}
         >

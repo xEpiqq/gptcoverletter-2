@@ -95,6 +95,7 @@
   }
 }
 
+.content_disable,
 .content {
   width: 100%;
   // height = 100% - navbar height
@@ -122,6 +123,14 @@
   }
 
   background-color: #F5F5F5;
+}
+
+.content_disable {
+  // make it non interactive
+  pointer-events: none;
+  
+  // make it darker
+  opacity: 0.7;
 }
 
 .content_left,
