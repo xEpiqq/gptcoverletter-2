@@ -80,6 +80,13 @@ function CheckoutForm(props) {
         payment_method: { card: elements.getElement(CardNumberElement), }, 
       }) 
       router.refresh();
+      if (result.error) {
+        setMessage(result.error.message);
+      }
+      else {
+        setMessage("Payment succeeded!");
+      }
+      props.closePopup();
     } catch (error) {
         setMessage(error.message);
       }
@@ -125,8 +132,8 @@ function CheckoutForm(props) {
 
 
         <div className="bg-transparent w-full h-22 flex flex-row items-center p-4 justify-between">
-        <button className="border-paymentboxborder border rounded-md w-30 px-4 h-11 text-paymenttext font-semibold text-sm" >Cancel</button>
-        <button disabled={isLoading || !stripe || !elements} id="submit" className="bg-blackblack rounded-md w-30 px-4 h-11 font-semibold text-sm" > Subscribe </button>
+        <button onClick={props.closePopup} className="border-paymentboxborder border rounded-md w-30 px-4 h-11 text-paymenttext font-semibold text-sm" >Cancel</button>
+        <button disabled={isLoading || !stripe || !elements} id="submit" className="bg-blackblack rounded-md w-30 px-4 h-11 font-semibold text-sm text-white dark:text-white" style={{color: "white"}} > Subscribe </button>
         </div>
         </form>
 
