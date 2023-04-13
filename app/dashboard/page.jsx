@@ -237,6 +237,7 @@ export default function Dashboard() {
     <div className={s.page}>
       {upgrade_popup && (
           <UpgradePopup
+            closePopup={() => setUpgradePopup(false)}
           />
       )}
       <div className={s.navbar}>

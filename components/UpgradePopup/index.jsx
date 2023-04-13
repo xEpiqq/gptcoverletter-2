@@ -14,11 +14,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./checkoutform";
 import useSWR from "swr";
 import axios from "axios";
-import Image from 'next/image';
+import Image from "next/image";
 
-
-
-const stripe_public_key = "pk_live_51Mn4sZHpzbXtemiLt1PgKGM0Eo9yKpKWABzs3WeLN24ayguAeJPJ6CGKaIcSOSNjtkzFvfDJzhPRSyRcchX1QQ3r007EVzNPJZ";
+const stripe_public_key =
+  "pk_live_51Mn4sZHpzbXtemiLt1PgKGM0Eo9yKpKWABzs3WeLN24ayguAeJPJ6CGKaIcSOSNjtkzFvfDJzhPRSyRcchX1QQ3r007EVzNPJZ";
 const stripePromise = loadStripe(stripe_public_key);
 
 // ///////////////////////////STRIPE TEST MODE/////////////////////////////
@@ -26,76 +25,94 @@ const stripePromise = loadStripe(stripe_public_key);
 // const stripePromise = loadStripe(stripe_public_key) // test mode
 // ////////////////////////////////////////////////////////////////////////
 
-
-const UpgradePopup = () => {
-
+const UpgradePopup = ({ closePopup }) => {
   const auth = getAuth();
   const [clientSecret, setClientSecret] = useState(undefined);
   const [user, loading] = useAuthState(auth);
   const [paymentLoading, setPaymentLoading] = useState(false);
 
-
   useEffect(() => {
-  async function setupPayment() {
-    setPaymentLoading(true);
+    async function setupPayment() {
+      setPaymentLoading(true);
 
-    if (!user) {
+      if (!user) {
         return;
+      }
+
+      const response = await axios.post("/api/stripecreatesub", {
+        user_id: user.uid,
+      });
+
+      // get the client secret from the response is json?
+      const client_secret = response.data.clientSecret;
+
+      setClientSecret(client_secret);
+      console.log("client secret: " + client_secret);
+      setPaymentLoading(false);
     }
-
-    const response = await axios.post("/api/stripecreatesub", {
-      user_id: user.uid,
-    })
-
-    // get the client secret from the response is json?
-    const client_secret = response.data.clientSecret;
-
-    setClientSecret(client_secret);
-    console.log("client secret: " + client_secret);
-    setPaymentLoading(false);
-  }
     setupPayment();
-    }, [user]);
+  }, [user]);
 
   if (paymentLoading) {
     return (
       <>
-      <div className="w-full h-full absolute z-10 bg-blackblack opacity-20"/>
-      <div className="flex bg-white w-full max-w-120 h-auto fixed z-10 flex-col text-white rounded-md">
-        <div className="w-full h-32 bg-white rounded-tl-md rounded-tr-md border-b-2 border-b-paymentborder p-8"><h1 className="font-bold text-3xl">Purchase Pro</h1></div>
-          <div className="bg-paymentmid w-full h-80 flex flex-col p-8 border-b-paymentborder border-b-2">
-            <h2>Add a payment method to start the Pro plan and create your first cover letter, unlock for $10 a month.</h2>
-  
-            <h3 className="text-paymenttext font-medium text-sm opacity-50 mt-5">Card Number</h3>
-            <div className="bg-white text-paymenttext border-paymentboxborder border rounded-md flex flex-row mt-2 p-3 w-full">
-            <Image src='/cardicon.png' alt="Image of credit card" width={20} height={15} draggable={false} className="w-8 opacity-70 pointer-events-none"/>
-            <div className='ml-4 w-full'/>
+        <div className="absolute z-10 h-full w-full bg-blackblack opacity-20" />
+        <div className="fixed z-10 flex h-auto w-full max-w-120 flex-col rounded-md bg-white text-white">
+          <div className="h-32 w-full rounded-tl-md rounded-tr-md border-b-2 border-b-paymentborder bg-white p-8">
+            <h1 className="text-3xl font-bold">Purchase Pro</h1>
+          </div>
+          <div className="flex h-80 w-full flex-col border-b-2 border-b-paymentborder bg-paymentmid p-8">
+            <h2>
+              Add a payment method to start the Pro plan and create your first
+              cover letter, unlock for $10 a month.
+            </h2>
+
+            <h3 className="mt-5 text-sm font-medium text-paymenttext opacity-50">
+              Card Number
+            </h3>
+            <div className="mt-2 flex w-full flex-row rounded-md border border-paymentboxborder bg-white p-3 text-paymenttext">
+              <Image
+                src="/cardicon.png"
+                alt="Image of credit card"
+                width={20}
+                height={15}
+                draggable={false}
+                className="pointer-events-none w-8 opacity-70"
+              />
+              <div className="ml-4 w-full" />
             </div>
-  
+
             <div className="flex flex-row gap-4">
-                <div className="w-full">
-                <h3 className="text-paymenttext font-medium text-sm opacity-50 mt-5">Expires</h3>
-                <div className="bg-white text-paymenttext border-paymentboxborder border rounded-md flex flex-row mt-2 p-3 w-50">
-                <div className='ml-4 w-full'/>
+              <div className="w-full">
+                <h3 className="mt-5 text-sm font-medium text-paymenttext opacity-50">
+                  Expires
+                </h3>
+                <div className="w-50 mt-2 flex flex-row rounded-md border border-paymentboxborder bg-white p-3 text-paymenttext">
+                  <div className="ml-4 w-full" />
                 </div>
+              </div>
+              <div className="w-full">
+                <h3 className="mt-5 text-sm font-medium text-paymenttext opacity-50">
+                  CVC
+                </h3>
+                <div className="mt-2 flex w-full flex-row rounded-md border border-paymentboxborder bg-white p-3 text-paymenttext">
+                  <div className="ml-4 w-full" />
                 </div>
-                <div className="w-full">
-                <h3 className="text-paymenttext font-medium text-sm opacity-50 mt-5">CVC</h3>
-                <div className="bg-white text-paymenttext border-paymentboxborder border rounded-md flex flex-row mt-2 p-3 w-full">
-                <div className='ml-4 w-full'/>
-                </div>
-                </div>
+              </div>
             </div>
             {/* {message && <div className="">{message}</div>} */}
           </div>
-  
-  
-          <div className="bg-transparent w-full h-22 flex flex-row items-center p-4 justify-between">
-          <button className="border-paymentboxborder border rounded-md w-30 px-4 h-11 text-paymenttext font-semibold text-sm" >Cancel</button>
-          <button className="bg-blackblack text-white rounded-md w-30 px-4 h-11 font-semibold text-sm" > Subscribe </button>
+
+          <div className="h-22 flex w-full flex-row items-center justify-between bg-transparent p-4">
+            <button className="w-30 h-11 rounded-md border border-paymentboxborder px-4 text-sm font-semibold text-paymenttext">
+              Cancel
+            </button>
+            <button className="w-30 h-11 rounded-md bg-blackblack px-4 text-sm font-semibold dark:text-white text-white" style={{color:"white"}}>
+              {" "}
+              Subscribe{" "}
+            </button>
           </div>
-  
-      </div>
+        </div>
       </>
     );
   }
@@ -107,7 +124,7 @@ const UpgradePopup = () => {
     };
     return (
       <Elements options={options} stripe={stripePromise}>
-        <CheckoutForm client_secret={clientSecret} />
+        <CheckoutForm client_secret={clientSecret} closePopup={closePopup} />
       </Elements>
     );
   }
