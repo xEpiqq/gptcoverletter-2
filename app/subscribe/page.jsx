@@ -25,15 +25,15 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import axios from "axios";
 import GoogleLogin from "@/components/GoogleLogin";
 
-/////////////////////////STRIPE LIVE MODE/////////////////////////////
-const stripe_public_key = "pk_live_51Mn4sZHpzbXtemiLt1PgKGM0Eo9yKpKWABzs3WeLN24ayguAeJPJ6CGKaIcSOSNjtkzFvfDJzhPRSyRcchX1QQ3r007EVzNPJZ" // production mode
-const stripePromise = loadStripe(stripe_public_key) // production mode
-//////////////////////////////////////////////////////////////////////
+// /////////////////////////STRIPE LIVE MODE/////////////////////////////
+// const stripe_public_key = "pk_live_51Mn4sZHpzbXtemiLt1PgKGM0Eo9yKpKWABzs3WeLN24ayguAeJPJ6CGKaIcSOSNjtkzFvfDJzhPRSyRcchX1QQ3r007EVzNPJZ" // production mode
+// const stripePromise = loadStripe(stripe_public_key) // production mode
+// //////////////////////////////////////////////////////////////////////
 
-// ///////////////////////////STRIPE TEST MODE/////////////////////////////
-// const stripe_public_key = "pk_test_51Mn4sZHpzbXtemiL0XN5qLTlaBxkoriYCe4gwg8Vq7TQxYs2CLpIC5HZahV7Xyf0EfKlq7JhzcG6GP2TTwjbsi8t00nALOso66" // test mode
-// const stripePromise = loadStripe(stripe_public_key) // test mode
-// ////////////////////////////////////////////////////////////////////////
+///////////////////////////STRIPE TEST MODE/////////////////////////////
+const stripe_public_key = "pk_test_51Mn4sZHpzbXtemiL0XN5qLTlaBxkoriYCe4gwg8Vq7TQxYs2CLpIC5HZahV7Xyf0EfKlq7JhzcG6GP2TTwjbsi8t00nALOso66" // test mode
+const stripePromise = loadStripe(stripe_public_key) // test mode
+////////////////////////////////////////////////////////////////////////
 
 
 
@@ -68,7 +68,7 @@ function Freetrial() {
 
   async function setupPayment() {
     setPaymentLoading(true);
-    const response = await axios.post("/api/stripe", {
+    const response = await axios.post("/api/stripecreatesub", {
       email: user.email,
       name: user.displayName,
       user_id: user.uid,

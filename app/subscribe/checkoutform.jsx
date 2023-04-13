@@ -74,7 +74,7 @@ function CheckoutForm(props) {
             <form onSubmit={handleSubmit}>
               <PaymentElement />
               <button disabled={isLoading || !stripe || !elements} id="submit" className={s.stripe_button} >Subscribe</button>
-              {/* {message && <div className={s.errormessage}>{message}</div>} */}
+              {message && <div className={s.errormessage}>{message}</div>}
             </form>
         </div>
       </div>

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { PaymentElement, useStripe, useElements, createPaymentMethod, confirmCardPayment } from "@stripe/react-stripe-js";
+import { PaymentElement, useStripe, useElements, createPaymentMethod } from "@stripe/react-stripe-js";
 import {CardElement, CardCvcElement, CardNumberElement, CardExpiryElement, getElement} from '@stripe/react-stripe-js';
 import '../../styles/index.css'
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-
 
 function CheckoutForm(props) {
 
@@ -38,7 +36,6 @@ function CheckoutForm(props) {
   const elements = useElements();
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     if (!stripe) {
@@ -69,34 +66,35 @@ function CheckoutForm(props) {
 
 
   async function handleSubmit(e) {
+    // const cardNumberElement = elements.getElement(CardNumberElement);
+    // const cardExpiryElement = elements.getElement(CardExpiryElement);
+    // const cardCvcElement = elements.getElement(CardCvcElement);
+    console.log(e)
+    console.log("function hit")
     e.preventDefault();
     if (!stripe || !elements) {
       return;
     }
     setIsLoading(true);
 
-    try {
-        const result = await stripe.confirmCardPayment( props.client_secret, {
-        payment_method: { card: elements.getElement(CardNumberElement), }, 
-      }) 
-      router.refresh();
-    } catch (error) {
-        setMessage(error.message);
-      }
+    // const { error, paymentMethod } = await stripe.createPaymentMethod({
+    //   type: 'card',
+    //   card: {
+    //     number: cardNumberElement,
+    //     exp_month: parseInt(cardExpiryElement.split('/')[0]),
+    //     exp_year: parseInt(cardExpiryElement.split('/')[1]),
+    //     cvc: cardCvcElement,
+    //   },
+    // });
 
-      setIsLoading(false);    
+    console.log(paymentMethod)
   }
-
-    
-
-
 
   return (
     <>
     <div className="w-full h-full absolute z-10 bg-blackblack opacity-20"/>
-    <div className="flex bg-white w-full max-w-120 h-auto fixed z-10 flex-col text-white rounded-md">
     <form onSubmit={handleSubmit}>
-
+    <div className="flex bg-white w-full max-w-120 h-auto fixed z-10 flex-col text-white rounded-md">
       <div className="w-full h-32 bg-white rounded-tl-md rounded-tr-md border-b-2 border-b-paymentborder p-8"><h1 className="font-bold text-3xl">Purchase Pro</h1></div>
         <div className="bg-paymentmid w-full h-80 flex flex-col p-8 border-b-paymentborder border-b-2">
           <h2>Add a payment method to start the Pro plan and create your first cover letter, unlock for $10 a month.</h2>
@@ -126,13 +124,13 @@ function CheckoutForm(props) {
 
         <div className="bg-transparent w-full h-22 flex flex-row items-center p-4 justify-between">
         <button className="border-paymentboxborder border rounded-md w-30 px-4 h-11 text-paymenttext font-semibold text-sm" >Cancel</button>
-        <button disabled={isLoading || !stripe || !elements} id="submit" className="bg-blackblack rounded-md w-30 px-4 h-11 font-semibold text-sm" > Subscribe </button>
+        <button disabled={isLoading || !stripe || !elements} id="submit" className="bg-blackblack text-white rounded-md w-30 px-4 h-11 font-semibold text-sm" > Subscribe </button>
         </div>
-        </form>
 
     </div>
+    </form>
     </>
   );
-  }
+}
 
 export default CheckoutForm;
