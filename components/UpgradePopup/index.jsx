@@ -15,6 +15,9 @@ import CheckoutForm from "./checkoutform";
 import useSWR from "swr";
 import axios from "axios";
 import Image from "next/image";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 const stripe_public_key =
   "pk_live_51Mn4sZHpzbXtemiLt1PgKGM0Eo9yKpKWABzs3WeLN24ayguAeJPJ6CGKaIcSOSNjtkzFvfDJzhPRSyRcchX1QQ3r007EVzNPJZ";
@@ -70,8 +73,8 @@ const UpgradePopup = ({ closePopup }) => {
             <h3 className="mt-5 text-sm font-medium text-paymenttext opacity-50">
               Card Number
             </h3>
-            <div className="mt-2 flex w-full flex-row rounded-md border border-paymentboxborder bg-white p-3 text-paymenttext">
-              <Image
+            <Skeleton className="mt-2 flex w-full flex-row rounded-md border border-paymentboxborder bg-white p-3 text-paymenttext" />
+              {/* <Image
                 src="/cardicon.png"
                 alt="Image of credit card"
                 width={20}
@@ -79,25 +82,21 @@ const UpgradePopup = ({ closePopup }) => {
                 draggable={false}
                 className="pointer-events-none w-8 opacity-70"
               />
-              <div className="ml-4 w-full" />
-            </div>
+              <Skeleton className="w-full" /> */}
+            {/* </div> */}
 
             <div className="flex flex-row gap-4">
               <div className="w-full">
                 <h3 className="mt-5 text-sm font-medium text-paymenttext opacity-50">
                   Expires
                 </h3>
-                <div className="w-50 mt-2 flex flex-row rounded-md border border-paymentboxborder bg-white p-3 text-paymenttext">
-                  <div className="ml-4 w-full" />
-                </div>
+                <Skeleton className="w-50 mt-2 flex flex-row rounded-md border border-paymentboxborder bg-white p-3 text-paymenttext" />
               </div>
               <div className="w-full">
                 <h3 className="mt-5 text-sm font-medium text-paymenttext opacity-50">
                   CVC
                 </h3>
-                <div className="mt-2 flex w-full flex-row rounded-md border border-paymentboxborder bg-white p-3 text-paymenttext">
-                  <div className="ml-4 w-full" />
-                </div>
+                <Skeleton className="mt-2 flex w-full flex-row rounded-md border border-paymentboxborder bg-white p-3 text-paymenttext" />
               </div>
             </div>
             {/* {message && <div className="">{message}</div>} */}

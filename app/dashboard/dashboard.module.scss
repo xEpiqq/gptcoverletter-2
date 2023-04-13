@@ -3,10 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 100vw;
   height: 100vh;
-
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -15,7 +13,6 @@
   }
 
   background-color: #F5F5F5;
-
   z-index: -1;
 
   * {
@@ -29,7 +26,6 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
-
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 0.75rem;
@@ -37,7 +33,6 @@
   margin: 0;
   width: calc(100% - 3rem);
   background-color: #2C2C2C;
-
   z-index: 1;
 
   .navbar_left {
@@ -58,26 +53,22 @@
       color: #D6DEFF;
       font-size: 0.8rem;
       font-weight: 700;
-
       font-family: "Lexend Deca", sans-serif;
     }
   }
 
   .navbar_right {
     z-index: 1000;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     gap: 2rem;
 
     h3 {
       color: #D6DEFF;
       font-size: 0.8rem;
       font-weight: 500;
-
       font-family: "Lexend Deca", sans-serif;
     }
 
@@ -98,9 +89,7 @@
 .content_disable,
 .content {
   width: 100%;
-  // height = 100% - navbar height
   height: calc(100% - 4rem);
-
   z-index: 0;
   display: flex;
   flex-direction: row;
@@ -112,7 +101,6 @@
   }
 
   input {
-    // placeholder text should be white
     &::placeholder {
       color: #b3b3b3;
     }
@@ -126,10 +114,7 @@
 }
 
 .content_disable {
-  // make it non interactive
   pointer-events: none;
-  
-  // make it darker
   opacity: 0.7;
 }
 
@@ -145,17 +130,13 @@
 .content_left_open,
 .content_left_closed {
   flex: 1;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
   background-color: #fff;
   transition: 0.5s;
-
   width: 100%;
-
   min-width: 250px;
 
   .content_left_top {
@@ -169,19 +150,12 @@
       height: 2rem;
       border-radius: 3px;
       margin-top: 1rem;
-
-      // background from the image button.png in the public folder
-
       border-radius: 5px;
-
       background-image: linear-gradient(315deg, #ffffff 0%, #d3d3d3 74%);
-
       color: black;
 
       &:hover {
         cursor: pointer;
-
-        // decrease opacity
         opacity: 0.7;
       }
     }
@@ -192,11 +166,9 @@
     display: flex;
     width: 100%;
     overflow-y: scroll;
-    // make scroll pretty
     &::-webkit-scrollbar {
       width: 0.5rem;
 
-      // make the thumb pretty
       &-thumb {
         background-color: #d27653;
         border-radius: 0.5rem;
@@ -213,10 +185,7 @@
         justify-content: flex-start;
         align-items: center;
         gap: 2rem;
-
-        // no border
         border: none;
-
         width: 85%;
         margin-left: 5%;
         margin-right: 5%;
@@ -224,10 +193,8 @@
         height: 2rem;
         border-radius: 3px;
         margin-top: 1rem;
-
         color: #2E2E2E;
         font-size: 0.7rem;
-
         white-space: nowrap;
         background-color: transparent;
 
@@ -248,7 +215,6 @@
           font-size: 0.6rem;
           font-weight: 500;
           color: #2E2E2E;
-          // overflow should ...
           max-width: 50%;
           overflow: hidden;
         }
@@ -263,7 +229,6 @@
           gap: 1rem;
           flex: 1;
           margin-right: 0.3rem;
-
           position: absolute;
           right: 0;
           top: 50%;
@@ -302,10 +267,7 @@
       .logout_button,
       .subscription_button {
         font-family: "Kodchasan", sans-serif;
-
-        // remove underline
         text-decoration: none;
-
         background-color: transparent;
         color: #4E4E4E;
         font-size: 0.7rem;
@@ -315,7 +277,6 @@
         height: 2rem;
         border-radius: 3px;
         border: none;
-
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -328,7 +289,6 @@
 
         &:hover {
           background-color: #D0D9FD;
-
           cursor: pointer;
         }
       }
@@ -338,7 +298,6 @@
 
 .content_center {
   flex: 3.5;
-
   background-color: #F5F5F5;
   display: flex;
   flex-direction: column;
@@ -347,25 +306,25 @@
 
   .content_center_textbox {
     width: 90%;
+    box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
     flex: 1;
     background-color: #362f3a;
+    background-color: #ffffff;
     margin: 5%;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 
     textarea {
-      width: 98%;
+      width: 100%;
       height: calc(100% - 1.5rem - 1px);
       background-color: transparent;
-      color: #fff;
-
+      color: #2b2b2b;
       padding: 1%;
-
-      // no border
       border: none;
-
-      // disable resize
       resize: none;
+      &:focus {
+        outline: none;
+      }
     }
 
     @media (max-width: 768px) {
@@ -389,8 +348,6 @@
   input {
     width: 100%;
     height: 2rem;
-
-    // no border
     background: #362f3a;
     border: 1.2px solid #444444;
     border-radius: 7px;
@@ -455,10 +412,8 @@
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-
     flex: 1;
   }
-
   .input_container_big {
     flex: 3;
   }
@@ -467,11 +422,8 @@
     background: #F5F5F5;
     border: 1.5px solid #414243;
     border-radius: 4px;
-
     width: 95%;
-
     height: 2.5rem;
-
     font-size: 1.2rem;
     padding-left: 0.5rem;
   }
@@ -481,7 +433,6 @@
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 2rem;
-
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -498,19 +449,15 @@
     border-radius: 5px;
     margin-bottom: 0;
     border: 1.5px solid #414243;
-
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
     input {
       display: none;
     }
-
     &:hover {
       background-color: #414243;
-
       cursor: pointer;
     }
   }
@@ -520,11 +467,8 @@
     background-color: #F5F5F5;
     height: 5rem;
     border-radius: 4px;
-
     width: 95%;
-
     resize: none;
-
     font-size: 0.8rem;
     color: black;
   }
@@ -537,7 +481,6 @@
     border-radius: 5px;
     border: none;
     border: 1px solid #4c4d4f;
-
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -591,7 +534,6 @@
   padding: 1rem;
   border-radius: 5px;
   border: none;
-
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -605,10 +547,8 @@
 }
 
 .loading_button {
-  // no text
   text-indent: -9999px;
 
-  // create a spinning loading animation
   &:after {
     content: "";
     display: block;
@@ -655,8 +595,6 @@
     border-radius: 50%;
     background: #4A6CF7;
     cursor: pointer;
-
-    // center on track
     margin-top: -7.5px;
   }
 }

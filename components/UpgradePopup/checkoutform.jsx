@@ -5,7 +5,6 @@ import '../../styles/index.css'
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-
 function CheckoutForm(props) {
 
   const CARD_ELEMENT_OPTIONS = {
