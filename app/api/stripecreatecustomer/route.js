@@ -7,13 +7,11 @@ const dbtwo = getFirestore(app);
 /////////////////////////STRIPE LIVE MODE/////////////////////////////
 const stripe_secret_key = process.env.STRIPE_REAL_SECRET_KEY; // production mode
 const stripe = Stripe(stripe_secret_key); // production mode
-const basic_price_id = process.env.BASIC_PRICE_ID;
 //////////////////////////////////////////////////////////////////////
 
 // ///////////////////////////STRIPE TEST MODE/////////////////////////////
 // const stripe_secret_test_key = process.env.STRIPE_SECRET_TEST_KEY; // test mode
 // const stripe = Stripe(stripe_secret_test_key) // test mode
-// const basic_price_id = "price_1MoSC4HpzbXtemiLsVTqsFIG"
 // ////////////////////////////////////////////////////////////////////////
 
 export async function POST(request) {
@@ -29,7 +27,6 @@ export async function POST(request) {
   const user = userDoc.data();
 
   let customer_id;
-  let clientSecret;
 
   console.log("here")
   const existingCustomers = await stripe.customers.list({
@@ -56,23 +53,6 @@ export async function POST(request) {
     stripe_customer_id: customer_id
   })
   console.log(`customer_id: ${customer_id}`)
-  // return client secert
-  console.log(customer_id)
-  console.log(basic_price_id)
 
-  try {
-    const subscription = await stripe.subscriptions.create({
-      customer: customer_id,
-      items: [{ price: basic_price_id }],
-      payment_behavior: "default_incomplete",
-      payment_settings: { save_default_payment_method: "on_subscription" },
-      expand: ["latest_invoice.payment_intent"],
-    });
-    clientSecret = subscription.latest_invoice.payment_intent.client_secret;
-  } catch (error) {
-    console.log(error);
-    return new Response(error.message, { status: 500 });
-  }
-
-  return new Response(JSON.stringify({ clientSecret }));
+  return new Response(JSON.stringify({ "stripe user created": "they were created" }));
 }

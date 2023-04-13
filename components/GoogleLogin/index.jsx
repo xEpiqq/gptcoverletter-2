@@ -13,6 +13,10 @@ import {
 import axios from "axios";
 
 const GoogleLogin = () => {
+  
+  async function setupPayment(user_email, user_displayname, user_uid) {
+
+  }
   //////////////////////////////
   /////// Google Login /////////
   //////////////////////////////
@@ -34,6 +38,14 @@ const GoogleLogin = () => {
         displayname: user.displayName,
       });
 
+      const response = await axios.post("/api/stripecreatecustomer", {
+        email: user.email,
+        name: user.displayName,
+        user_id: user.uid,
+      });
+ 
+      console.log("stripe user created")
+      
       router.push("/dashboard");
     } catch (error) {
       const credential = GoogleAuthProvider.credentialFromError(error);
